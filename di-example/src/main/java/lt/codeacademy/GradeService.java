@@ -2,7 +2,11 @@ package lt.codeacademy;
 
 public class GradeService {
 
-	private MarksDao marksDao = new InternalMarksDao();
+	private final MarksDao marksDao;
+
+	public GradeService(MarksDao marksDao) {
+		this.marksDao = marksDao;
+	}
 
 	public Double avarageGrade() {
 		double sum = 0.0;
