@@ -1,9 +1,11 @@
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
         <title>Hello there</title>
     </head>
     <body>
-        <h1>Hello everyone, I am alive!</h1>
+        <h1 th:text="${'Hello ' + param.surname}">Default</h1>
+        <p>made changes</p>
+        <p>made changes</p>
     </body>
 </html>
