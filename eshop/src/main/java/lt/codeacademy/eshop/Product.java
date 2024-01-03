@@ -1,8 +1,12 @@
 package lt.codeacademy.eshop;
 
-import lombok.Data;
+import lombok.*;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class Product {
   private String name;
   private double price;
