@@ -1,4 +1,4 @@
-package lt.codeacademy.eshop;
+package lt.codeacademy.eshop.product;
 
 import lombok.*;
 
