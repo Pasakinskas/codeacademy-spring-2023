@@ -1,5 +1,7 @@
 package lt.codeacademy.eshop.product;
 
+import java.util.UUID;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,6 +16,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class Product {
+  private UUID uuid;
   private String name;
   private double price;
   private int amount;
