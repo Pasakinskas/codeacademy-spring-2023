@@ -2,20 +2,27 @@ package lt.codeacademy.eshop.product;
 
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Repository
 public class ProductDao {
-  private List<Product> products = new ArrayList<>();
+  private Map<UUID, Product> products = new HashMap<>();
 
   public void save(Product product) {
-    product.setUuid(UUID.randomUUID());
-    products.add(product);
+    final UUID uuid = UUID.randomUUID();
+    product.setProductId(uuid);
+    products.put(uuid, product);
+  }
+
+  public void update(Product product) {
+    products.put(product.getProductId(), product);
   }
 
   public List<Product> getAll() {
-    return products;
+    return new ArrayList<>(products.values());
+  }
+
+  public Product getProductByUUID(UUID id) {
+    return products.get(id);
   }
 }
