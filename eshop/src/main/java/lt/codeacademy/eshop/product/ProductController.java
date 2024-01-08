@@ -2,6 +2,7 @@ package lt.codeacademy.eshop.product;
 
 import java.util.List;
 
+import lombok.extern.log4j.Log4j2;
 import lt.codeacademy.eshop.HttpEndpoints;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@Log4j2
 public class ProductController {
 
 	private ProductService productService;
@@ -20,6 +22,7 @@ public class ProductController {
 
 	@GetMapping(HttpEndpoints.PRODUCTS_CREATE)
 	public String sayHelloToCustomer(Model model) {
+    log.atInfo().log("-==== get product on create ====-");
 		model.addAttribute("product", Product.builder().build());
 		return "product/product";
 	}
