@@ -6,22 +6,25 @@
 </head>
 <body>
 </body>
-<table>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Amount</th>
-            <th></th>  <!-- empty row for buttons (edit, delete, etc)-->
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="product: ${productList}">
-            <td th:text="${product.name}">a</td>
-            <td th:text="${product.price}">a</td>
-            <td th:text="${product.amount}">a</td>
-            <td></td>
-        </tr>
-    </tbody>
-</table>
+<div th:if="${productList.isEmpty}">Product list is empty</div>
+<div th:unless="${productList.isEmpty}">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Amount</th>
+                <th></th>  <!-- empty row for buttons (edit, delete, etc)-->
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product: ${productList}">
+                <td th:text="${product.name}">a</td>
+                <td th:text="${product.price}">a</td>
+                <td th:text="${product.amount}">a</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 </html>
