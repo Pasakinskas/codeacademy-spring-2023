@@ -27,6 +27,6 @@ public class ProductController {
 		productService.saveProduct(product);
 		System.out.println("currently in the database");
 		productService.getAllProducts().forEach(System.out::println);
-		return "hello";
+		return "welcome/welcome";
 	}
 }
