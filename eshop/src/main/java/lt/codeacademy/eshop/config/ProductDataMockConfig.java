@@ -21,10 +21,11 @@ public class ProductDataMockConfig {
     final Faker faker = new Faker();
     while (MAX_COUNT >= count) {
       productService.saveProduct(
-        new Product(
-          faker.food().fruit(),
-          faker.number().numberBetween(2, 99),
-          faker.number().numberBetween(1, 100)));
+        Product.builder()
+          .name(faker.food().fruit())
+          .amount(faker.number().numberBetween(2, 99))
+          .price(faker.number().numberBetween(1, 100))
+          .build());
       count++;
     }
     return null;

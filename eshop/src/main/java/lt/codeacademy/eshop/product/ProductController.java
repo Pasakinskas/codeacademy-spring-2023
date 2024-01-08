@@ -20,7 +20,7 @@ public class ProductController {
 
 	@GetMapping(HttpEndpoints.PRODUCTS_CREATE)
 	public String sayHelloToCustomer(Model model) {
-		model.addAttribute("product", new Product());
+		model.addAttribute("product", Product.builder().build());
 		return "product/product";
 	}
 
