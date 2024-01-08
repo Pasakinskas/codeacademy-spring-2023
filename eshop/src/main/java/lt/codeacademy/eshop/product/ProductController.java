@@ -1,5 +1,7 @@
 package lt.codeacademy.eshop.product;
 
+import java.util.List;
+
 import lt.codeacademy.eshop.HttpEndpoints;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +21,7 @@ public class ProductController {
 	@GetMapping(HttpEndpoints.PRODUCTS_CREATE)
 	public String sayHelloToCustomer(Model model) {
 		model.addAttribute("product", new Product());
-		return "product";
+		return "product/product";
 	}
 
 	@PostMapping(HttpEndpoints.PRODUCTS_CREATE)
@@ -30,4 +32,11 @@ public class ProductController {
 		productService.getAllProducts().forEach(System.out::println);
 		return "welcome/welcome";  // tai nera URL path
 	}
+
+  @GetMapping(HttpEndpoints.PRODUCTS)
+  public String getProducts(Model model) {
+    final List<Product> allProducts = productService.getAllProducts();
+    model.addAttribute("productList", allProducts);
+    return "product/products";
+  }
 }
