@@ -10,6 +10,9 @@ spring:
     url: jdbc:h2:mem:eshop_db
     username: sa
     password: password
+  sql:
+    init:
+      schema-locations: classpath:db/ddl-scripts.sql
 logging:
   level:
     lt:
