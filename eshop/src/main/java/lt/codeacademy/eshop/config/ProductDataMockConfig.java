@@ -25,7 +25,7 @@ public class ProductDataMockConfig {
     while (MAX_COUNT >= count) {
       productService.saveProduct(
         Product.builder()
-          .name(faker.food().fruit())
+          .name("(faker) " + faker.food().fruit())
           .amount(faker.number().numberBetween(2, 99))
           .price(faker.number().numberBetween(1, 100))
           .build());
