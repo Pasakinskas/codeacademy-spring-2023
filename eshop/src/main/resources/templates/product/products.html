@@ -7,8 +7,8 @@
 </head>
 <body>
 </body>
-<div th:if="${productList.isEmpty}">Product list is empty</div>
-<div th:unless="${productList.isEmpty}">
+<div th:if="${#lists.isEmpty(productList)}">Product list is empty</div>
+<div th:unless="${not #lists.isEmpty(productList)}">
     <table class="table table-dark table-hover">
         <thead>
             <tr>
