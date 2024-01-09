@@ -61,4 +61,11 @@ public class ProductController {
 
     return "product/products";
   }
+
+  @GetMapping(HttpEndpoints.PRODUCTS_DELETE)
+  public String deleteProduct(Model model, @PathVariable UUID productId) {
+    productService.deleteProductByUUID(productId);
+
+    return getProducts(model);
+  }
 }

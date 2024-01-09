@@ -31,4 +31,8 @@ public class ProductService {
   public Product getProductByUUID(UUID id) {
     return productDao.getProductByUUID(id);
   }
+
+  public void deleteProductByUUID(UUID id) {
+    productDao.deleteProductByUUID(id);
+  }
 }

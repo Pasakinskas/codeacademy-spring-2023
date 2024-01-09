@@ -25,4 +25,8 @@ public class ProductDao {
   public Product getProductByUUID(UUID id) {
     return products.get(id);
   }
+
+  public void deleteProductByUUID(UUID id) {
+    products.remove(id);
+  }
 }
