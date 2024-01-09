@@ -39,12 +39,10 @@ public class ProductController {
   }
 
 	@PostMapping(HttpEndpoints.PRODUCTS_CREATE)
-	public String createAProduct(Product product) {
+	public String createAProduct(Model model, Product product) {
 		productService.saveProduct(product);
-		System.out.println("currently in the database");
-		productService.getAllProducts().forEach(System.out::println);
 
-		return "product/products";
+    return getProducts(model);
 	}
 
   @PostMapping(HttpEndpoints.PRODUCTS_UPDATE)
