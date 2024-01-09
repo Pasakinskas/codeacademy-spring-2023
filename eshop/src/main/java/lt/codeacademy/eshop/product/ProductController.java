@@ -41,8 +41,9 @@ public class ProductController {
 	@PostMapping(HttpEndpoints.PRODUCTS_CREATE)
 	public String createAProduct(Model model, Product product) {
 		productService.saveProduct(product);
+    model.addAttribute("message", "Product added successfully!");
 
-    return getProducts(model);
+    return "product/product";
 	}
 
   @PostMapping(HttpEndpoints.PRODUCTS_UPDATE)
