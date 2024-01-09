@@ -1,6 +1,7 @@
 package lt.codeacademy.eshop.product;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public class ProductService {
   private ProductDao productDao;
 
   @Autowired
-  public ProductService(ProductDao productDao) {
+  public ProductService(@Qualifier("productJDBCDao") ProductDao productDao) {
     this.productDao = productDao;
   }
 

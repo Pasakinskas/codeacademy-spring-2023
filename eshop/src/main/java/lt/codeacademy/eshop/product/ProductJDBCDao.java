@@ -4,10 +4,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
 
-@Primary
 @Repository
 public class ProductJDBCDao implements ProductDao {
 
