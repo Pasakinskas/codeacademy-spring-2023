@@ -1,6 +1,15 @@
 spring:
   main:
     banner-mode: console
+  h2:
+    console:
+      path: /eshop_h2
+      enabled: true
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:eshop_db
+    username: sa
+    password: password
 logging:
   level:
     lt:
