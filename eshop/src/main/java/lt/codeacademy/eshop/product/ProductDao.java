@@ -1,32 +1,17 @@
 package lt.codeacademy.eshop.product;
 
-import org.springframework.stereotype.Repository;
+import java.util.List;
+import java.util.UUID;
 
-import java.util.*;
+public interface ProductDao {
 
-@Repository
-public class ProductDao {
-  private Map<UUID, Product> products = new HashMap<>();
+  void save(Product product);
 
-  public void save(Product product) {
-    final UUID uuid = UUID.randomUUID();
-    product.setProductId(uuid);
-    products.put(uuid, product);
-  }
+  void update(Product product);
 
-  public void update(Product product) {
-    products.put(product.getProductId(), product);
-  }
+  List<Product> getAll();
 
-  public List<Product> getAll() {
-    return new ArrayList<>(products.values());
-  }
+  Product getProductByUUID(UUID id);
 
-  public Product getProductByUUID(UUID id) {
-    return products.get(id);
-  }
-
-  public void deleteProductByUUID(UUID id) {
-    products.remove(id);
-  }
+  void deleteProductByUUID(UUID id);
 }
