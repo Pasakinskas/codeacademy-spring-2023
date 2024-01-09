@@ -13,6 +13,7 @@ spring:
   sql:
     init:
       schema-locations: classpath:db/ddl-scripts.sql
+      data-locations: classpath:db/dml-scripts.sql
 logging:
   level:
     lt:
