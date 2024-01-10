@@ -1,4 +1,6 @@
-package lt.codeacademy.eshop.product;
+package lt.codeacademy.eshop.product.dao;
+
+import lt.codeacademy.eshop.product.Product;
 
 import java.util.List;
 import java.util.UUID;
