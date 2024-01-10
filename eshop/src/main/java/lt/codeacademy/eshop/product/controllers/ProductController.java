@@ -58,7 +58,7 @@ public class ProductController {
   }
 
   @GetMapping(HttpEndpoints.PRODUCTS)
-  public String getProducts(Model model, @PageableDefault(size = 3) Pageable pageable) {
+  public String getProducts(Model model, @PageableDefault(size = 5) Pageable pageable) {
     final Page<ProductDto> allProducts = productService.getAllProductsPage(pageable);
     model.addAttribute("productList", allProducts);
 
