@@ -8,7 +8,7 @@
 <body>
     <h3>Lets create a product:</h3>
     <div class="alert alert-success" role="alert"
-         th:text="${message}">
+         th:text="${param.message}">
         Success message when add product
     </div>
     <form method="post" th:object="${product}">

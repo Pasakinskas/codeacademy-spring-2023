@@ -48,7 +48,7 @@ public class ProductController {
 		productService.saveProduct(product);
     model.addAttribute("message", "Product added successfully!");
 
-    return "redirect:/products/create";
+    return "redirect:/products/create?message=Product added successfully!";
 	}
 
   @PostMapping(HttpEndpoints.PRODUCTS_UPDATE)
