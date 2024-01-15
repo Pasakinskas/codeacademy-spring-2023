@@ -19,7 +19,7 @@
             <tr>
                 <th>
                     <a th:with="directionVariable=${productList.sort.getOrderFor('name')?.direction}"
-                       th:href="@{/products(sort='name,' + ${directionVariable?.name eq 'ASC' ? 'DESC' : 'ASC'})}">
+                       th:href="@{/products(sort='name,' + ${directionVariable?.name eq 'ASC' ? 'DESC' : 'ASC'} + ',ignorecase')}">
                         <i th:class="'fa ' + ${directionVariable?.name eq 'ASC'? 'fa-arrow-up' : 'fa-arrow-down'}"
                            aria-hidden="true"
                            th:if="${productList.sort.getOrderFor('name') ne null}"></i>
