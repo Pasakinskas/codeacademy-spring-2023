@@ -10,6 +10,7 @@ import lt.codeacademy.eshop.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,7 +59,8 @@ public class ProductController {
   }
 
   @GetMapping(HttpEndpoints.PRODUCTS)
-  public String getProducts(Model model, @PageableDefault(size = 5) Pageable pageable) {
+  public String getProducts(Model model,
+                            @PageableDefault(size = 5, sort = {"price"}, direction = Sort.Direction.ASC) Pageable pageable) {
     final Page<ProductDto> allProducts = productService.getAllProductsPage(pageable);
     model.addAttribute("productList", allProducts);
 
