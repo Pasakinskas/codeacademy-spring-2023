@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: my_very_strong_password
+  sql:
+    init:
+      schema-locations: classpath:db/postgres/ddl-scripts.sql
+      data-locations: classpath:db/dml-scripts.sql
+      platform: postgresql
+      mode: always
