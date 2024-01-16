@@ -1,0 +1,33 @@
+version: "3.8"
+services:
+  postgresqldb:
+    image: postgres
+    container_name: ca-postgres-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: my_very_strong_password
+    ports:
+      # <Port exposed> : < PostgreSQL Port running inside container>
+      - "5432:5432"
+    networks:
+      - postgres_network
+    volumes:
+      - ~/db-data:/var/lib/postgresql/data
+  pgadmin4:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: tests@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: postgres
+    ports:
+      - "8889:80"
+    volumes:
+      - ~/pgadmin-data:/var/lib/pgadmin
+    networks:
+      - postgres_network
+volumes:
+  db-data:
+  pgadmin-data:
+
+networks:
+  postgres_network:
+    driver: bridge
