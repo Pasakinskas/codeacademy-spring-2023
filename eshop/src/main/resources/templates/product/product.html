@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Hello there</title>
+    <title th:text="#{product.create.title}">Hello there</title>
 </head>
 <body>
-    <h3>Lets create a product:</h3>
+    <h3 th:text="#{product.create.title}">Lets create a product:</h3>
     <div th:if="${message ne null}"
          class="alert alert-success" role="alert"
          th:text="${message}">
@@ -14,16 +14,16 @@
     </div>
     <form method="post" th:object="${product}">
 
-        <label>Name:</label>
+        <label th:text="#{product.create.name} + ':'">Name:</label>
         <input type="text" placeholder="product name" th:field="*{name}"><br/>
 
-        <label>Price:</label>
+        <label th:text="#{product.create.price} + ':'">Price:</label>
         <input type="text" placeholder="product price" th:field="*{price}"><br/>
 
-        <label>Amount:</label>
+        <label th:text="#{product.create.amount} + ':'">Amount:</label>
         <input type="text" placeholder="product amount" th:field="*{amount}"><br/>
 
-        <button type="submit">LETS DO THIS</button>
+        <button type="submit" th:text="#{product.create.action}">LETS DO THIS</button>
     </form>
 </body>
 </html>
