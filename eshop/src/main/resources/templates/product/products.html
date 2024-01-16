@@ -12,9 +12,10 @@
 </body>
 <label for="languageSelector"></label>
 <select id="languageSelector">
+    <option th:text="#{language.choose}">Choose language</option>
     <option value="LT" th:text="'Lietuvių'"></option>
     <option value="DE" th:text="'Deutsch'"></option>
-    <option value="EN" th:text="'English'"></option>
+    <option value="EN" th:text="'English'" ></option>
 </select>
 
 <div th:if="${#lists.isEmpty(productList)}" th:text="#{products.empty}">Product list is empty</div>
