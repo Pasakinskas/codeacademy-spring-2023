@@ -23,7 +23,8 @@ public class ProductService {
     this.mapper = mapper;
   }
 
-  public void saveProduct(Product product) {
+  public void saveProduct(ProductDto productDto) {
+    var product = mapper.fromProductDto(productDto);
     productDao.save(product);
   }
 
