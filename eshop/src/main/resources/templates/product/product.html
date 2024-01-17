@@ -3,27 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
     <title th:text="#{product.create.title}">Hello there</title>
 </head>
 <body>
-    <h3 th:text="#{product.create.title}">Lets create a product:</h3>
-    <div th:if="${message ne null}"
-         class="alert alert-success" role="alert"
-         th:text="${message}">
-        Success message when add product
-    </div>
-    <form method="post" th:object="${product}">
-
-        <label th:text="#{product.create.name} + ':'">Name:</label>
-        <input type="text" placeholder="product name" th:field="*{name}"><br/>
-
-        <label th:text="#{product.create.price} + ':'">Price:</label>
-        <input type="text" placeholder="product price" th:field="*{price}"><br/>
-
-        <label th:text="#{product.create.amount} + ':'">Amount:</label>
-        <input type="text" placeholder="product amount" th:field="*{amount}"><br/>
-
-        <button type="submit" th:text="#{product.create.action}">LETS DO THIS</button>
-    </form>
+    <main class="container">
+        <h3 th:text="#{product.create.title}">Lets create a product:</h3>
+        <div th:if="${message ne null AND message.length > 0}"
+             class="alert alert-success" role="alert"
+             th:text="${message}">
+            Success message when add product
+        </div>
+        <form method="post" th:object="${productDto}">
+            <div class="form-group">
+                <label th:text="#{product.create.name} + ':'">Name:</label>
+                <input class="form-control" type="text" placeholder="product name" th:field="*{name}">
+            </div>
+            <div class="form-group">
+                <label th:text="#{product.create.price} + ':'">Price:</label>
+                <input class="form-control" type="text" placeholder="product price" th:field="*{price}">
+            </div>
+            <div class="form-group">
+                <label th:text="#{product.create.amount} + ':'">Amount:</label>
+                <input class="form-control" type="text" placeholder="product amount" th:field="*{amount}">
+                <span th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}" th:errorclass="form-error"></span>
+            </div>
+            <button class="btn btn-primary" type="submit" th:text="#{product.create.action}">LETS DO THIS</button>
+        </form>
+    </main>
 </body>
 </html>

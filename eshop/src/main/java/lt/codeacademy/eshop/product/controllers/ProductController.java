@@ -17,6 +17,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -30,7 +31,7 @@ public class ProductController {
 	@GetMapping(HttpEndpoints.PRODUCTS_CREATE)
 	public String getFormForCreate(Model model, String message) {
     log.atInfo().log("-==== get product on create ====-");
-		model.addAttribute("product", ProductDto.builder().build());
+		model.addAttribute("productDto", ProductDto.builder().build());
     model.addAttribute("message", messageService.getTranslatedMessage(message));
 
 		return "product/product";
@@ -39,13 +40,16 @@ public class ProductController {
   @GetMapping(HttpEndpoints.PRODUCTS_UPDATE)
   public String getFormForUpdate(Model model, @PathVariable UUID productId) {
     log.atInfo().log("-==== get product on update ====-");
-    model.addAttribute("product", productService.getProductByUUID(productId));
+    model.addAttribute("productDto", productService.getProductByUUID(productId));
 
     return "product/product";
   }
 
 	@PostMapping(HttpEndpoints.PRODUCTS_CREATE)
-	public String createAProduct(Model model, @Valid ProductDto product) {
+	public String createAProduct(Model model, @Valid ProductDto product, BindingResult errors) {
+    if (errors.hasErrors()) {
+      return "product/product";
+    }
 
 		productService.saveProduct(product);
 
