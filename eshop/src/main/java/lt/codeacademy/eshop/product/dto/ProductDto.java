@@ -1,6 +1,5 @@
 package lt.codeacademy.eshop.product.dto;
 
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
@@ -16,7 +15,7 @@ public class ProductDto {
   private UUID productId;
   private String name;
   private double price;
-  @Positive
+  @Positive(message = "{productdto.amount.positive}")
   @NotNull
   private int amount;
 }
