@@ -9,6 +9,7 @@ import lt.codeacademy.eshop.HttpEndpoints;
 import lt.codeacademy.eshop.helper.MessageService;
 import lt.codeacademy.eshop.product.Product;
 import lt.codeacademy.eshop.product.dto.ProductDto;
+import lt.codeacademy.eshop.product.exception.ProductNotFoundException;
 import lt.codeacademy.eshop.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -77,5 +78,10 @@ public class ProductController {
     productService.deleteProductByUUID(productId);
 
     return getProducts(model, pageable);
+  }
+
+  @ExceptionHandler
+  public String productNotFound(ProductNotFoundException e, Model model) {
+    return "product/error/productNotFound";
   }
 }
