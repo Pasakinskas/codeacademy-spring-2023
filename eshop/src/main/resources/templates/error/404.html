@@ -7,6 +7,10 @@
     <title>404 Error page</title>
 </head>
 <body>
-<img th:src="@{/images/errors/404.png}">
+<div class="container">
+    <img style="width: 100%" th:src="@{/images/errors/404.png}">
+    <h1 th:text="'Page not found ' + ${path}"></h1>
+    <h2 th:text="${timestamp}"></h2>
+</div>
 </body>
 </html>
