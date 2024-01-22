@@ -1,6 +1,6 @@
 package lt.codeacademy.eshop.product.dao;
 
-import lt.codeacademy.eshop.product.Product;
+import lt.codeacademy.eshop.product.pojo.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;

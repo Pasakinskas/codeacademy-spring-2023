@@ -1,6 +1,6 @@
 package lt.codeacademy.eshop.product.dao;
 
-import lt.codeacademy.eshop.product.Product;
+import lt.codeacademy.eshop.product.pojo.Product;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

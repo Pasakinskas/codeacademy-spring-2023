@@ -1,6 +1,5 @@
 package lt.codeacademy.eshop.product.controllers.example;
 
-import lt.codeacademy.eshop.product.Product;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
