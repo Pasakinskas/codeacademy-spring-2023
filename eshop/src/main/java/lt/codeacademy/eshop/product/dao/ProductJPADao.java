@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -43,7 +44,7 @@ public class ProductJPADao implements ProductDao {
   }
 
   @Override
-  public Product getProductByUUID(UUID id) {
+  public Optional<Product> getProductByUUID(UUID id) {
     return repository.findByProductId(id);
   }
 
