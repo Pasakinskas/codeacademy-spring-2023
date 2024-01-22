@@ -1,5 +1,6 @@
 package lt.codeacademy.eshop.utils;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,6 +18,9 @@ public class CustomErrorViewResolver implements ErrorViewResolver {
       return new ModelAndView("error/404", model);
     }
 
-    return new ModelAndView("customErrorPage", model);
+    final Map<String, Object> myModelMap = new HashMap<>();
+    myModelMap.putAll(model);
+    myModelMap.put("myCustomAttribute", "Any text for attribute");
+    return new ModelAndView("customErrorPage", myModelMap);
   }
 }
