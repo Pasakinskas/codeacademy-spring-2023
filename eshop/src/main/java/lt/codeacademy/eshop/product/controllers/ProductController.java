@@ -9,9 +9,7 @@ import lt.codeacademy.eshop.HttpEndpoints;
 import lt.codeacademy.eshop.helper.MessageService;
 import lt.codeacademy.eshop.product.Product;
 import lt.codeacademy.eshop.product.dto.ProductDto;
-import lt.codeacademy.eshop.product.exception.ProductNotFoundException;
 import lt.codeacademy.eshop.product.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -26,17 +24,17 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class ProductController {
 
-	private final ProductService productService;
+  private final ProductService productService;
   private final MessageService messageService;
 
-	@GetMapping(HttpEndpoints.PRODUCTS_CREATE)
-	public String getFormForCreate(Model model, String message) {
+  @GetMapping(HttpEndpoints.PRODUCTS_CREATE)
+  public String getFormForCreate(Model model, String message) {
     log.atInfo().log("-==== get product on create ====-");
-		model.addAttribute("productDto", ProductDto.builder().build());
+    model.addAttribute("productDto", ProductDto.builder().build());
     model.addAttribute("message", messageService.getTranslatedMessage(message));
 
-		return "product/product";
-	}
+    return "product/product";
+  }
 
   @GetMapping(HttpEndpoints.PRODUCTS_UPDATE)
   public String getFormForUpdate(Model model, @PathVariable UUID productId) {
@@ -46,16 +44,16 @@ public class ProductController {
     return "product/product";
   }
 
-	@PostMapping(HttpEndpoints.PRODUCTS_CREATE)
-	public String createAProduct(Model model, @Valid ProductDto product, BindingResult errors) {
+  @PostMapping(HttpEndpoints.PRODUCTS_CREATE)
+  public String createAProduct(Model model, @Valid ProductDto product, BindingResult errors) {
     if (errors.hasErrors()) {
       return "product/product";
     }
 
-		productService.saveProduct(product);
+    productService.saveProduct(product);
 
     return "redirect:/products/create?message=product.create.message.success";
-	}
+  }
 
   @PostMapping(HttpEndpoints.PRODUCTS_UPDATE)
   public String updateProduct(Model model, Pageable pageable, Product product, @PathVariable UUID productId) {
@@ -78,11 +76,5 @@ public class ProductController {
     productService.deleteProductByUUID(productId);
 
     return getProducts(model, pageable);
-  }
-
-  @ExceptionHandler
-  public String productNotFound(ProductNotFoundException e, Model model) {
-    model.addAttribute("productUUID", e.getProductUUID());
-    return "product/error/productNotFound";
   }
 }
