@@ -24,8 +24,9 @@ public class ProductService {
   }
 
   public void saveProduct(ProductDto productDto) {
-    var product = mapper.fromProductDto(productDto);
-    productDao.save(product);
+    throw new RuntimeException("For testing purposes only");
+//    var product = mapper.fromProductDto(productDto);
+//    productDao.save(product);
   }
 
   public void updateProduct(Product product) {
