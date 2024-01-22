@@ -28,3 +28,7 @@ logging:
         eshop:
           config: DEBUG
           product: INFO
+server:
+  error:
+    whitelabel:
+      enabled: false
