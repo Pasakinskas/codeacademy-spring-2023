@@ -8,7 +8,7 @@
 </head>
 <body>
 <main class="container">
-    <h1>Product not found</h1>
+    <h1 th:text="#{product.not.found} + ': ' + ${productUUID}">Product not found</h1>
 </main>
 </body>
 </html>

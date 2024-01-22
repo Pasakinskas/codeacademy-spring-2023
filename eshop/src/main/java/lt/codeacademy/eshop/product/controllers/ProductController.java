@@ -82,6 +82,7 @@ public class ProductController {
 
   @ExceptionHandler
   public String productNotFound(ProductNotFoundException e, Model model) {
+    model.addAttribute("productUUID", e.getProductUUID());
     return "product/error/productNotFound";
   }
 }

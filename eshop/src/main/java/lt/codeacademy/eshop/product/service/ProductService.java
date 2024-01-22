@@ -40,7 +40,7 @@ public class ProductService {
   public ProductDto getProductByUUID(UUID id) {
     return productDao.getProductByUUID(id)
       .map(mapper::toProductDto)
-      .orElseThrow(ProductNotFoundException::new);
+      .orElseThrow(() -> new ProductNotFoundException(id));
   }
 
   public void deleteProductByUUID(UUID id) {
