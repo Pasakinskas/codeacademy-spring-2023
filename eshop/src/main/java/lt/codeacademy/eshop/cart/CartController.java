@@ -13,15 +13,14 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @SessionAttributes("cartSession")
 public class CartController {
 
+  @ModelAttribute("cartSession")
+  public String createDefaultCartSession() {
+    return "Labas";
+  }
+
   @GetMapping
   public String openCart() {
     return "/cart/cart";
   }
 
-  @GetMapping("/add")
-  public String addToCart(Model model) {
-    model.addAttribute("cartSession", "Labas");
-
-    return "redirect:/cart";
-  }
 }
