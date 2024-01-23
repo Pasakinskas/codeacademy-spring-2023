@@ -1,14 +1,13 @@
 package lt.codeacademy.eshop.product.service;
 
 import lombok.RequiredArgsConstructor;
-import lt.codeacademy.eshop.mappers.ProductMapper;
+import lt.codeacademy.eshop.product.mappers.ProductMapper;
 import lt.codeacademy.eshop.product.dao.ProductCategoryRepository;
 import lt.codeacademy.eshop.product.dao.ProductDao;
 import lt.codeacademy.eshop.product.dto.ProductDto;
 import lt.codeacademy.eshop.product.exception.ProductNotFoundException;
 import lt.codeacademy.eshop.product.pojo.Product;
 import lt.codeacademy.eshop.product.pojo.ProductCategory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -26,10 +25,8 @@ public class ProductService {
 
   @Transactional
   public void saveProduct(ProductDto productDto) {
-    final Product product = mapper.fromProductDto(productDto);
-    final ProductCategory productCategory = ProductCategory.builder()
-      .name("NaN")
-      .build();
+    final Product product = mapper.fromDto(productDto);
+    final ProductCategory productCategory = productCategoryRepository.getReferenceById(productDto.getCategoryId());
 
     product.getProductCategories().add(productCategory);
 
@@ -37,16 +34,16 @@ public class ProductService {
   }
 
   public void updateProduct(ProductDto productDto) {
-    productDao.update(mapper.fromProductDto(productDto));
+    productDao.update(mapper.fromDto(productDto));
   }
 
   public Page<ProductDto> getAllProductsPage(Pageable pageable) {
-    return productDao.getPage(pageable).map(product -> mapper.toProductDto(product));
+    return productDao.getPage(pageable).map(product -> mapper.toDto(product));
   }
 
   public ProductDto getProductByUUID(UUID id) {
     return productDao.getProductByUUID(id)
-      .map(mapper::toProductDto)
+      .map(mapper::toDto)
       .orElseThrow(() -> new ProductNotFoundException(id));
   }
 

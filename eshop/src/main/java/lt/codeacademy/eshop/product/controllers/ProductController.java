@@ -1,5 +1,6 @@
 package lt.codeacademy.eshop.product.controllers;
 
+import java.util.Set;
 import java.util.UUID;
 
 import jakarta.validation.Valid;
@@ -7,7 +8,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import lt.codeacademy.eshop.HttpEndpoints;
 import lt.codeacademy.eshop.helper.MessageService;
+import lt.codeacademy.eshop.product.dto.ProductCategoryDto;
 import lt.codeacademy.eshop.product.dto.ProductDto;
+import lt.codeacademy.eshop.product.service.ProductCategoryService;
 import lt.codeacademy.eshop.product.service.ProductService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,11 +29,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class ProductController {
 
   private final ProductService productService;
+  private final ProductCategoryService productCategoryService;
   private final MessageService messageService;
 
   @GetMapping(HttpEndpoints.PRODUCTS_CREATE)
   public String getFormForCreate(Model model, String message) {
-    log.atInfo().log("-==== get product on create ====-");
+    Set<ProductCategoryDto> categories = productCategoryService.getCategories();
+
+    model.addAttribute("categoriesDto", categories);
     model.addAttribute("productDto", ProductDto.builder().build());
     model.addAttribute("message", messageService.getTranslatedMessage(message));
 

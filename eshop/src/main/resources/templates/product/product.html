@@ -15,20 +15,32 @@
             Success message when add product
         </div>
         <form method="post" th:object="${productDto}">
-            <div class="form-group">
+            <div class="mb-3 form-group">
                 <label th:text="#{product.create.name} + ':'">Name:</label>
                 <input class="form-control" type="text" placeholder="product name" th:field="*{name}">
                 <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:errorclass="form-error"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3 form-group">
                 <label th:text="#{product.create.price} + ':'">Price:</label>
                 <input class="form-control" type="text" placeholder="product price" th:field="*{price}">
                 <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" th:errorclass="form-error"></span>
             </div>
-            <div class="form-group">
+            <div class="mb-3 form-group">
                 <label th:text="#{product.create.amount} + ':'">Amount:</label>
                 <input class="form-control" type="text" placeholder="product amount" th:field="*{amount}">
                 <span th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}" th:errorclass="form-error"></span>
+            </div>
+            <div class="mb-3 form-group">
+                <label for="categories" th:text="#{product.create.category} + ':'">Category:</label>
+                <div class="dropdown">
+                    <select id="categories"
+                            th:field="*{categoryId}"
+                            class="form-select" aria-label="Default select example">
+                        <option th:each="category: ${categoriesDto}"
+                                th:value="${category.id}"
+                                th:text="${category.name}">Category Name</option>
+                    </select>
+                </div>
             </div>
             <button class="btn btn-primary" type="submit" th:text="#{product.create.action}">LETS DO THIS</button>
         </form>
