@@ -27,12 +27,9 @@ public class ProductService {
   @Transactional
   public void saveProduct(ProductDto productDto) {
     final Product product = mapper.fromProductDto(productDto);
-
     final ProductCategory productCategory = ProductCategory.builder()
       .name("NaN")
       .build();
-
-    productCategoryRepository.save(productCategory);
 
     product.getProductCategories().add(productCategory);
 
