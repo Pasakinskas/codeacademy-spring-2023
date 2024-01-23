@@ -1,5 +1,7 @@
 package lt.codeacademy.eshop.mappers;
 
+import java.util.HashSet;
+
 import lt.codeacademy.eshop.product.pojo.Product;
 import lt.codeacademy.eshop.product.dto.ProductDto;
 import org.springframework.stereotype.Component;
@@ -22,6 +24,7 @@ public class ProductMapper {
       .price(productDto.getPrice())
       .name(productDto.getName())
       .amount(productDto.getAmount())
+      .productCategories(new HashSet<>())
       .build();
   }
 }
