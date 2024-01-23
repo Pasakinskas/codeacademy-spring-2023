@@ -8,8 +8,29 @@
 <body>
 <div class="container">
     <h2 th:text="#{cart.title}">My Cart</h2>
-    <h3 th:text="${cartSession}"></h3>
-    <!--TODO: cia bus tolimesne implementacija -->
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Product Name</th>
+            <th scope="col">Unit Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Total Price</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="cartItem: ${cartSession}">
+            <td th:text="${cartItem.name}"></td>
+            <td th:text="2.00"></td>
+            <td th:text="3"></td>
+            <td th:text="6.00"></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <button class="btn btn-primary" type="submit" th:text="#{cart.order}"></button>
 </div>
 </body>
 </html>
