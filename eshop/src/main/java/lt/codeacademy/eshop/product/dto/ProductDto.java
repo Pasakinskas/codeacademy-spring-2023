@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 @Data
@@ -17,7 +18,7 @@ public class ProductDto {
   @NotBlank(message = "{productdto.name.notblank}")
   private String name;
   @Positive(message = "{productdto.positive}")
-  private double price;
+  private BigDecimal price;
   @Positive(message = "{productdto.positive}")
   @NotNull
   private int amount;
