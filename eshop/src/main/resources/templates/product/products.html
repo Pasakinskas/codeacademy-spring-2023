@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="~{fragments/layout :: head}"></head>
+<head th:replace="~{fragments/layout :: head(#{products.title})}"></head>
 <body>
     <main>
         <label for="languageSelector"></label>

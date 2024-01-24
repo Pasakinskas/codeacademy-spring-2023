@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="~{fragments/layout :: head}"></head>
+<head th:replace="~{fragments/layout :: head(#{cart.title})}"></head>
 <body>
     <main class="container">
         <h2 th:text="#{cart.title}">My Cart</h2>
