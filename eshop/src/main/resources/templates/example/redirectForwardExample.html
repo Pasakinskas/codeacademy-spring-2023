@@ -3,6 +3,7 @@
       lang="en">
 <head th:replace="~{fragments/layout :: head('Redirect Example')}"></head>
 <body>
+    <nav th:replace="~{fragments/layout :: nav('')}">placeholder</nav>
     <main>
         <h1>Redirect Example</h1>
         <form method="post" th:object="${dtoExample}">

@@ -1,3 +1,9 @@
 .form-error {
     color: red;
 }
+
+.stealth-selector {
+    border: none;
+    background: none;
+    color: rgba(0,0,0,.55);
+}

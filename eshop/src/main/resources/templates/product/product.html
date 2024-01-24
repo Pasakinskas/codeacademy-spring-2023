@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="~{fragments/layout :: head(#{product.create.title})}"></head>
 <body>
+    <nav th:replace="~{fragments/layout :: nav('products/create')}">placeholder</nav>
     <main class="container">
         <h3 th:text="#{product.create.title}">Lets create a product:</h3>
         <div th:if="${message ne null AND message.length > 0}"

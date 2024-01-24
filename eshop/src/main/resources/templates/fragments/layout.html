@@ -15,4 +15,28 @@
     <p class="text-center" th:text="#{footer.message}"></p>
 </footer>
 
+<nav th:fragment="nav(page)" class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" th:href="@{/}">EShop</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" th:href="@{/products}" th:text="#{products.title}"></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/products/create}" th:text="#{product.create.title}"></a>
+            </li>
+            <select class="nav-item dropdown stealth-selector" id="languageSelector">
+                <option th:text="#{language.choose}">Choose language</option>
+                <option value="LT" th:text="'Lietuvių'"></option>
+                <option value="DE" th:text="'Deutsch'"></option>
+                <option value="EN" th:text="'English'" ></option>
+            </select>
+        </ul>
+    </div>
+</nav>
+
 </html>

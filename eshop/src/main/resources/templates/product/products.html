@@ -2,15 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="~{fragments/layout :: head(#{products.title})}"></head>
 <body>
+    <nav th:replace="~{fragments/layout :: nav('products')}">placeholder</nav>
     <main>
-        <label for="languageSelector"></label>
-        <select id="languageSelector">
-            <option th:text="#{language.choose}">Choose language</option>
-            <option value="LT" th:text="'Lietuvių'"></option>
-            <option value="DE" th:text="'Deutsch'"></option>
-            <option value="EN" th:text="'English'" ></option>
-        </select>
-
         <div th:if="${#lists.isEmpty(productList)}" th:text="#{products.empty}">Product list is empty</div>
         <div th:if="${not #lists.isEmpty(productList)}" class="container">
 
