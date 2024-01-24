@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       lang="en">
-<head th:replace="fragments/layout :: head"></head>
+<head th:replace="~{fragments/layout :: head}"></head>
 <body>
-<h1 th:text="#{home.title}">Sveiki atvyke i e-Shop</h1>
-<h2 th:text="#{hello.world}"></h2>
-<h3 th:text="'Today date is: ' + ${modelDateAttr}"></h3>
+    <main>
+        <h1 th:text="#{home.title}">Sveiki atvyke i e-Shop</h1>
+        <h2 th:text="#{hello.world}"></h2>
+        <h3 th:text="'Today date is: ' + ${modelDateAttr}"></h3>
+    </main>
+    <footer th:replace="~{fragments/layout :: footer}">placeholder</footer>
 </body>
 </html>

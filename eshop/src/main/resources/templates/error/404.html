@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       lang="en">
-<head th:replace="fragments/layout :: head"></head>
+<head th:replace="~{fragments/layout :: head}"></head>
 <body>
-<div class="container">
-    <img style="width: 100%" th:src="@{/images/errors/404.png}">
-    <h1 th:text="'Page not found ' + ${path} + ', my custom attribute: ' + ${myCustomAttribute}"></h1>
-    <h2 th:text="${timestamp}"></h2>
-</div>
+    <main class="container">
+        <img style="width: 100%" th:src="@{/images/errors/404.png}">
+        <h1 th:text="'Page not found ' + ${path} + ', my custom attribute: ' + ${myCustomAttribute}"></h1>
+        <h2 th:text="${timestamp}"></h2>
+    </main>
+    <footer th:replace="~{fragments/layout :: footer}">placeholder</footer>
 </body>
 </html>

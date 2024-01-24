@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="fragments/layout :: head"></head>
+<head th:replace="~{fragments/layout :: head}"></head>
 <body>
-<div class="container">
-    <h2 th:text="#{cart.title}">My Cart</h2>
+    <main class="container">
+        <h2 th:text="#{cart.title}">My Cart</h2>
 
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th scope="col">Product Name</th>
-            <th scope="col">Unit Price</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Total Price</th>
-            <th scope="col"></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="cartItem: ${cartSession}">
-            <td th:text="${cartItem.name}"></td>
-            <td th:text="2.00"></td>
-            <td th:text="3"></td>
-            <td th:text="6.00"></td>
-            <td></td>
-        </tr>
-        </tbody>
-    </table>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Product Name</th>
+                <th scope="col">Unit Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total Price</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cartItem: ${cartSession}">
+                <td th:text="${cartItem.name}"></td>
+                <td th:text="2.00"></td>
+                <td th:text="3"></td>
+                <td th:text="6.00"></td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
 
-    <button class="btn btn-primary" type="submit" th:text="#{cart.order}"></button>
-</div>
+        <button class="btn btn-primary" type="submit" th:text="#{cart.order}"></button>
+    </main>
+    <footer th:replace="~{fragments/layout :: footer}">placeholder</footer>
 </body>
 </html>

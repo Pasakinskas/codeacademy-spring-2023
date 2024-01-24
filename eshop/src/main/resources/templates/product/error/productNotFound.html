@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="fragments/layout :: head"></head>
+<head th:replace="~{fragments/layout :: head}"></head>
 <body>
-<main class="container">
-    <h1 th:text="#{product.not.found} + ': ' + ${productUUID}">Product not found</h1>
-</main>
+    <main class="container">
+        <h1 th:text="#{product.not.found} + ': ' + ${productUUID}">Product not found</h1>
+    </main>
+    <footer th:replace="~{fragments/layout :: footer}">placeholder</footer>
 </body>
 </html>

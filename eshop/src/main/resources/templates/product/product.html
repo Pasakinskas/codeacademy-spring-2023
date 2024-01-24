@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="fragments/layout :: head"></head>
+<head th:replace="~{fragments/layout :: head}"></head>
 <body>
     <main class="container">
         <h3 th:text="#{product.create.title}">Lets create a product:</h3>
@@ -40,5 +40,6 @@
             <button class="btn btn-primary" type="submit" th:text="#{product.create.action}">LETS DO THIS</button>
         </form>
     </main>
+    <footer th:replace="~{fragments/layout :: footer}">placeholder</footer>
 </body>
 </html>

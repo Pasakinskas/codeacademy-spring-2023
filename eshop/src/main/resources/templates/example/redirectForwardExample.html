@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       lang="en">
-<head th:replace="fragments/layout :: head"></head>
+<head th:replace="~{fragments/layout :: head}"></head>
 <body>
-<h1>Redirect Example</h1>
-<form method="post" th:object="${dtoExample}">
-    <label>Name:</label>
-    <input type="text" th:field="*{title}"><br/>
-    <button type="submit">Test It</button>
-</form>
+    <main>
+        <h1>Redirect Example</h1>
+        <form method="post" th:object="${dtoExample}">
+            <label>Name:</label>
+            <input type="text" th:field="*{title}"><br/>
+            <button type="submit">Test It</button>
+        </form>
+    </main>
+    <footer th:replace="~{fragments/layout :: footer}">placeholder</footer>
 </body>
 </html>
