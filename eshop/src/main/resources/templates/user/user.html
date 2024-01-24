@@ -27,6 +27,11 @@
                 <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" th:errorclass="form-error"></span>
             </div>
             <div class="mb-3 form-group">
+                <label th:text="#{user.create.repeatPassword} + ':'">Repeat Password:</label>
+                <input class="form-control" type="text" placeholder="repeat password" th:field="*{repeatPassword}">
+                <span th:if="${#fields.hasErrors('global')}" th:errors="*{global}" th:errorclass="form-error"></span>
+            </div>
+            <div class="mb-3 form-group">
                 <label th:text="#{user.create.zipCode} + ':'">Zipcode:</label>
                 <input class="form-control" type="text" placeholder="zipCode" th:field="*{zipCode}">
                 <span th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}" th:errorclass="form-error"></span>
