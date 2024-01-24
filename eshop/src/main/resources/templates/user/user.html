@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{fragments/layout :: head(#{user.create.title})}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: nav('user')}">placeholder</nav>
+    <main class="container">
+        <h3 th:text="#{user.create.title}"></h3>
+        <form method="post" th:object="${userDto}">
+            <div class="mb-3 form-group">
+                <label th:text="#{user.create.name} + ':'">Name:</label>
+                <input class="form-control" type="text" placeholder="user name" th:field="*{name}">
+                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:errorclass="form-error"></span>
+            </div>
+            <div class="mb-3 form-group">
+                <label th:text="#{user.create.surname} + ':'">Surname:</label>
+                <input class="form-control" type="text" placeholder="user name" th:field="*{surname}">
+                <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" th:errorclass="form-error"></span>
+            </div>
+            <div class="mb-3 form-group">
+                <label th:text="#{user.create.email} + ':'">email:</label>
+                <input class="form-control" type="text" placeholder="email" th:field="*{email}">
+                <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:errorclass="form-error"></span>
+            </div>
+            <div class="mb-3 form-group">
+                <label th:text="#{user.create.password} + ':'">Password:</label>
+                <input class="form-control" type="text" placeholder="password" th:field="*{password}">
+                <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" th:errorclass="form-error"></span>
+            </div>
+            <div class="mb-3 form-group">
+                <label th:text="#{user.create.zipCode} + ':'">Zipcode:</label>
+                <input class="form-control" type="text" placeholder="zipCode" th:field="*{zipCode}">
+                <span th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}" th:errorclass="form-error"></span>
+            </div>
+            <div class="mb-3 form-group">
+                <label th:text="#{user.create.phoneNumber} + ':'">Phone Number:</label>
+                <input class="form-control" type="text" placeholder="phone number" th:field="*{phoneNumber}">
+                <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" th:errorclass="form-error"></span>
+            </div>
+            <button class="btn btn-primary" type="submit" th:text="#{product.create.action}">LETS DO THIS</button>
+        </form>
+    </main>
+    <footer th:replace="~{fragments/layout :: footer}">placeholder</footer>
+</body>
+</html>
