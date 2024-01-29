@@ -7,6 +7,11 @@
         <div th:if="${#lists.isEmpty(productList)}" th:text="#{products.empty}">Product list is empty</div>
         <div th:if="${not #lists.isEmpty(productList)}" class="container">
 
+            <div class="alert alert-success" role="alert"
+                th:if="${param.successMessage ne null}" th:text="${param.successMessage}">
+                A simple success alert—check it out!
+            </div>
+
             <span th:text="#{products.total(${productList.totalElements})}">Total elements</span>
             <br/><span th:text="#{products.total.pages(${productList.totalPages})}">Total pages</span>
 

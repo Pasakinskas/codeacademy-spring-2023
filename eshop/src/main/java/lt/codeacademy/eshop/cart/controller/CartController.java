@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/cart")
@@ -42,10 +43,12 @@ public class CartController {
   }
 
   @PostMapping
-  public String order(SessionStatus sessionStatus) {
+  public String order(SessionStatus sessionStatus, RedirectAttributes redirectAttributes) {
     //TODO: save into DB or do other things with cart data
 
     sessionStatus.setComplete();
+
+    redirectAttributes.addAttribute("successMessage", "Order created successfully!");
 
     return "redirect:/products";
   }
