@@ -8,7 +8,7 @@
         <div th:if="${not #lists.isEmpty(productList)}" class="container">
 
             <div class="alert alert-success" role="alert"
-                th:if="${param.successMessage ne null}" th:text="${param.successMessage}">
+                th:if="${successMessageFlashAttr ne null}" th:text="${successMessageFlashAttr}">
                 A simple success alert—check it out!
             </div>
 
