@@ -13,7 +13,6 @@
                 <th scope="col">Unit Price</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Total Price</th>
-                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -22,9 +21,19 @@
                 <td th:text="${cartItem.productDto.price}"></td>
                 <td th:text="${cartItem.quantity}"></td>
                 <td th:text="${cartItem.totalItemPrice}"></td>
-                <td></td>
             </tr>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="2"></td>
+                    <td>
+                        <strong th:text="${cartSession.cartTotalQuantity}"></strong>
+                    </td>
+                    <td>
+                        <strong th:text="${cartSession.cartTotalPrice}"></strong>
+                    </td>
+                </tr>
+            </tfoot>
         </table>
 
         <button class="btn btn-primary" type="submit" th:text="#{cart.order}"></button>
