@@ -1,9 +1,10 @@
-.form-error {
-    color: red;
+body {
+    background-color: #434453;
+    color: white;
+    min-height: 100vh;
+    font-size: calc(6px + 2vmin);
 }
 
-.stealth-selector {
-    border: none;
-    background: none;
-    color: rgba(0,0,0,.55);
+.form-error {
+    color: red;
 }
