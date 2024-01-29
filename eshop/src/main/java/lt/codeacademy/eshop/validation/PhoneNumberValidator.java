@@ -1,5 +1,7 @@
 package lt.codeacademy.eshop.validation;
 
+import java.util.Objects;
+
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
@@ -15,9 +17,17 @@ public class PhoneNumberValidator implements ConstraintValidator<PhoneNumber, St
   @Override
   public boolean isValid(String value, ConstraintValidatorContext context) {
     if (type.equals(PhoneNumberType.GLOBAL)) {
-      return value.startsWith("+370") && value.length() == 12;
+      return isValidPrefixGlobal(value);
     } else {
-      return value.startsWith("86") && value.length() == 9;
+      return isValidPrefixLocal(value);
     }
+  }
+
+  private boolean isValidPrefixGlobal(final String phoneNumber) {
+    return Objects.nonNull(phoneNumber) && phoneNumber.startsWith("+370") && phoneNumber.length() == 12;
+  }
+
+  private boolean isValidPrefixLocal(final String phoneNumber) {
+    return Objects.nonNull(phoneNumber) && phoneNumber.startsWith("86") && phoneNumber.length() == 9;
   }
 }

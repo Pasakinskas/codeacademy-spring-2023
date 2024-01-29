@@ -1,5 +1,7 @@
 package lt.codeacademy.eshop.validation;
 
+import java.util.Objects;
+
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import lt.codeacademy.eshop.user.dto.UserDto;
@@ -8,6 +10,6 @@ public class PasswordMatchValidator implements ConstraintValidator<RepeatPasswor
 
   @Override
   public boolean isValid(UserDto userDto, ConstraintValidatorContext context) {
-    return userDto.getPassword().equals(userDto.getRepeatPassword());
+    return Objects.nonNull(userDto.getPassword()) && userDto.getPassword().equals(userDto.getRepeatPassword());
   }
 }
