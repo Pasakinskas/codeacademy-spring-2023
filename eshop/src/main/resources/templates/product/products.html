@@ -28,7 +28,7 @@
                             <i th:class="'fa ' + ${directionVariable?.name eq 'ASC' ? 'fa-arrow-up' : 'fa-arrow-down'}"
                                aria-hidden="true"
                                th:if="${productList.sort.getOrderFor('price') ne null}"></i>
-                            <span th:text="#{products.field.price}">Price</span>
+                            <span th:text="#{products.field.price} + ' (' + ${modelCurrencyAttr} + ')'">Price</span>
                         </a>
                     </th>
                     <th class="col-md-2">

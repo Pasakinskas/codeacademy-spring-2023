@@ -8,11 +8,11 @@
 
         <table class="table table-dark table-hover">
             <thead>
-            <tr>
-                <th scope="col">Product Name</th>
-                <th scope="col">Unit Price</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Total Price</th>
+            <tr th:with="curr=' (' + ${modelCurrencyAttr} + ')'">
+                <th scope="col" th:text="#{cart.productName}">Product Name</th>
+                <th scope="col" th:text="#{cart.unitPrice} + *{curr}">Unit Price</th>
+                <th scope="col" th:text="#{cart.quantity}">Quantity</th>
+                <th scope="col" th:text="#{cart.totalPrice} + *{curr}">Total Price</th>
             </tr>
             </thead>
             <tbody>
