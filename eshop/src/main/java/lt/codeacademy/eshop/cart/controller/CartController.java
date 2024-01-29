@@ -13,6 +13,7 @@ import lt.codeacademy.eshop.product.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
 @RequestMapping("/cart")
@@ -36,6 +37,15 @@ public class CartController {
   public String addToCart(@PathVariable UUID productId,
                           @ModelAttribute("cartSession") CartDto cart) {
     cartService.addProductToCartByProductId(productId, cart);
+
+    return "redirect:/products";
+  }
+
+  @PostMapping
+  public String order(SessionStatus sessionStatus) {
+    //TODO: save into DB or do other things with cart data
+
+    sessionStatus.setComplete();
 
     return "redirect:/products";
   }
