@@ -14,6 +14,7 @@ public class CartDto {
   public void add(final ProductDto productDto) {
     cartItems.add(CartItemDto.builder()
       .productDto(productDto)
+      .quantity(1)
       .build());
   }
 }

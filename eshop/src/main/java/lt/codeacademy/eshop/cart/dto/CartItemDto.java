@@ -9,4 +9,9 @@ import lt.codeacademy.eshop.product.dto.ProductDto;
 public class CartItemDto {
 
   private final ProductDto productDto;
+  private int quantity;
+
+  public void incrementQuantity() {
+    quantity++;
+  }
 }
