@@ -1,23 +1,20 @@
 package lt.codeacademy.eshop.cart.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
-
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lt.codeacademy.eshop.cart.dto.CartDto;
 import lt.codeacademy.eshop.cart.service.CartService;
-import lt.codeacademy.eshop.product.dto.ProductDto;
-import lt.codeacademy.eshop.product.service.ProductService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.UUID;
+
+import static lt.codeacademy.eshop.HttpEndpoints.CART;
+import static lt.codeacademy.eshop.HttpEndpoints.PRODUCT_LIST;
+
 @Controller
-@RequestMapping("/cart")
+@RequestMapping(CART)
 @SessionAttributes("cartSession")
 @RequiredArgsConstructor
 public class CartController {
@@ -39,7 +36,7 @@ public class CartController {
                           @ModelAttribute("cartSession") CartDto cart) {
     cartService.addProductToCartByProductId(productId, cart);
 
-    return "redirect:/products";
+    return "redirect:" + PRODUCT_LIST;
   }
 
   @PostMapping
@@ -50,7 +47,7 @@ public class CartController {
 
     redirectAttributes.addFlashAttribute("successMessageFlashAttr", "Order created successfully!");
 
-    return "redirect:/products";
+    return "redirect:" + PRODUCT_LIST;
   }
 
 }

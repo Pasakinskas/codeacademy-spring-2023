@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="~{fragments/layout :: head(#{user.create.title})}"></head>
 <body>
-<nav th:replace="~{fragments/layout :: nav('user')}">placeholder</nav>
+<nav th:replace="~{fragments/layout :: nav('public/users')}">placeholder</nav>
     <main class="container">
         <h3 th:text="#{user.create.title}"></h3>
         <form method="post" th:object="${userDto}">

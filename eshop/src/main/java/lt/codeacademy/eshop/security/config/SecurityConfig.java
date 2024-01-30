@@ -6,8 +6,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.config.annotation.web.configurers.HeadersConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
+
+import static lt.codeacademy.eshop.HttpEndpoints.PRODUCT_LIST;
 
 @Configuration
 @EnableWebSecurity
@@ -18,7 +19,8 @@ public class SecurityConfig {
     return http
       .authorizeHttpRequests(authorize -> authorize
         .requestMatchers(
-          "/login/**"
+          "/",
+          "/public/**"
         ).permitAll()
         .anyRequest()
         .authenticated())
@@ -26,7 +28,7 @@ public class SecurityConfig {
         .permitAll()
         .loginPage("/login")                //GET - the login form
         .loginProcessingUrl("/login")       //Specifies the URL to validate the credentials.
-        .defaultSuccessUrl("/products", true)
+        .defaultSuccessUrl(PRODUCT_LIST, true)
         .usernameParameter("loginEmail")    //The HTTP parameter to look for the username
         .passwordParameter("loginPassword") //The HTTP parameter to look for the password
       )

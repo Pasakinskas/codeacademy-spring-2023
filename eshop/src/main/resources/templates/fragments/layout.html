@@ -27,16 +27,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" th:href="@{/products}" th:text="#{products.title}"></a>
+                    <a class="nav-link" th:href="@{/public/products}" th:text="#{products.title}"></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/products/create}" th:text="#{product.create.title}"></a>
+                    <a class="nav-link" th:href="@{/private/products/create}" th:text="#{product.create.title}"></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/users/create}" th:text="#{user.create.title}"></a>
+                    <a class="nav-link" th:href="@{/public/users/create}" th:text="#{user.create.title}"></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/cart}" th:text="#{cart.title}"></a>
+                    <a class="nav-link" th:href="@{/public/cart}" th:text="#{cart.title}"></a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -45,9 +45,9 @@
                         Choose language
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" th:href="'/' + *{page} + '?lang=lt'" th:text="'Lietuvių'">LT</a></li>
-                        <li><a class="dropdown-item" th:href="'/' + *{page} + '?lang=de'" th:text="'Deutsch'">DE</a></li>
-                        <li><a class="dropdown-item" th:href="'/' + *{page} + '?lang=en'" th:text="'English'">EN</a></li>
+                        <li><a class="dropdown-item" th:href="*{page} + '?lang=lt'" th:text="'Lietuvių'">LT</a></li>
+                        <li><a class="dropdown-item" th:href="*{page} + '?lang=de'" th:text="'Deutsch'">DE</a></li>
+                        <li><a class="dropdown-item" th:href="*{page} + '?lang=en'" th:text="'English'">EN</a></li>
                     </ul>
                 </li>
             </ul>

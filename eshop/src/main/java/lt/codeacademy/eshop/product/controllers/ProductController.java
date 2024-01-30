@@ -1,12 +1,8 @@
 package lt.codeacademy.eshop.product.controllers;
 
-import java.util.Set;
-import java.util.UUID;
-
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import lt.codeacademy.eshop.HttpEndpoints;
 import lt.codeacademy.eshop.helper.MessageService;
 import lt.codeacademy.eshop.product.dto.ProductCategoryDto;
 import lt.codeacademy.eshop.product.dto.ProductDto;
@@ -23,6 +19,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Set;
+import java.util.UUID;
+
+import static lt.codeacademy.eshop.HttpEndpoints.*;
+
 @Controller
 @Log4j2
 @RequiredArgsConstructor
@@ -32,7 +33,7 @@ public class ProductController {
   private final ProductCategoryService productCategoryService;
   private final MessageService messageService;
 
-  @GetMapping(HttpEndpoints.PRODUCTS_CREATE)
+  @GetMapping(PRODUCTS_CREATE)
   public String getFormForCreate(Model model, String message) {
     Set<ProductCategoryDto> categories = productCategoryService.getCategories();
 
@@ -43,7 +44,7 @@ public class ProductController {
     return "product/product";
   }
 
-  @GetMapping(HttpEndpoints.PRODUCTS_UPDATE)
+  @GetMapping(PRODUCTS_UPDATE)
   public String getFormForUpdate(Model model, @PathVariable UUID productId) {
     log.atInfo().log("-==== get product on update ====-");
     model.addAttribute("productDto", productService.getProductByUUID(productId));
@@ -51,7 +52,7 @@ public class ProductController {
     return "product/product";
   }
 
-  @PostMapping(HttpEndpoints.PRODUCTS_CREATE)
+  @PostMapping(PRODUCTS_CREATE)
   public String createAProduct(Model model, @Valid ProductDto product, BindingResult errors) {
     if (errors.hasErrors()) {
       return "product/product";
@@ -59,17 +60,17 @@ public class ProductController {
 
     productService.saveProduct(product);
 
-    return "redirect:/products/create?message=product.create.message.success";
+    return "redirect:" + PRODUCTS_CREATE + "?message=product.create.message.success";
   }
 
-  @PostMapping(HttpEndpoints.PRODUCTS_UPDATE)
+  @PostMapping(PRODUCTS_UPDATE)
   public String updateProduct(Model model, Pageable pageable, ProductDto productDto, @PathVariable UUID productId) {
     productService.updateProduct(productDto);
 
     return getProducts(model, pageable);
   }
 
-  @GetMapping(HttpEndpoints.PRODUCTS)
+  @GetMapping(PRODUCT_LIST)
   public String getProducts(Model model,
                             @PageableDefault(size = 5, sort = {"price"}, direction = Sort.Direction.ASC) Pageable pageable) {
     final Page<ProductDto> allProducts = productService.getAllProductsPage(pageable);
@@ -78,7 +79,7 @@ public class ProductController {
     return "product/products";
   }
 
-  @GetMapping(HttpEndpoints.PRODUCTS_DELETE)
+  @GetMapping(PRODUCTS_DELETE)
   public String deleteProduct(Model model, Pageable pageable, @PathVariable UUID productId) {
     productService.deleteProductByUUID(productId);
 

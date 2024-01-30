@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="~{fragments/layout :: head(#{products.title})}"></head>
 <body>
-    <nav th:replace="~{fragments/layout :: nav('products')}">placeholder</nav>
+    <nav th:replace="~{fragments/layout :: nav('/public/products')}">placeholder</nav>
     <main>
         <div th:if="${#lists.isEmpty(productList)}" th:text="#{products.empty}">Product list is empty</div>
         <div th:if="${not #lists.isEmpty(productList)}" class="container">
@@ -20,7 +20,7 @@
                 <tr>
                     <th class="col-md-auto">
                         <a th:with="directionVariable=${productList.sort.getOrderFor('name')?.direction}"
-                           th:href="@{/products(page=${productList.getPageable().getPageNumber()},sort='name,' + ${directionVariable?.name eq 'ASC' ? 'DESC' : 'ASC'} + ',ignorecase')}">
+                           th:href="@{/public/products(page=${productList.getPageable().getPageNumber()},sort='name,' + ${directionVariable?.name eq 'ASC' ? 'DESC' : 'ASC'} + ',ignorecase')}">
                             <i th:class="'fa ' + ${directionVariable?.name eq 'ASC'? 'fa-arrow-up' : 'fa-arrow-down'}"
                                aria-hidden="true"
                                th:if="${productList.sort.getOrderFor('name') ne null}"></i>
@@ -29,7 +29,7 @@
                     </th>
                     <th class="col-md-2">
                         <a th:with="directionVariable=${productList.sort.getOrderFor('price')?.direction}"
-                           th:href="@{/products(page=${productList.getPageable().getPageNumber()},sort='price,' + ${directionVariable?.name eq 'ASC' ? 'DESC' : 'ASC'})}">
+                           th:href="@{/public/products(page=${productList.getPageable().getPageNumber()},sort='price,' + ${directionVariable?.name eq 'ASC' ? 'DESC' : 'ASC'})}">
                             <i th:class="'fa ' + ${directionVariable?.name eq 'ASC' ? 'fa-arrow-up' : 'fa-arrow-down'}"
                                aria-hidden="true"
                                th:if="${productList.sort.getOrderFor('price') ne null}"></i>
@@ -38,7 +38,7 @@
                     </th>
                     <th class="col-md-2">
                         <a th:with="directionVariable=${productList.sort.getOrderFor('amount')?.direction}"
-                           th:href="@{/products(page=${productList.getPageable().getPageNumber()},sort='amount,' + ${directionVariable?.name eq 'ASC' ? 'DESC' : 'ASC'})}">
+                           th:href="@{/public/products(page=${productList.getPageable().getPageNumber()},sort='amount,' + ${directionVariable?.name eq 'ASC' ? 'DESC' : 'ASC'})}">
                             <i th:class="'fa ' + ${directionVariable?.name eq 'ASC' ? 'fa-arrow-up' : 'fa-arrow-down'}"
                                aria-hidden="true"
                                th:if="${productList.sort.getOrderFor('amount') ne null}"></i>
@@ -50,17 +50,17 @@
                 </thead>
                 <tbody>
                 <tr th:each="product: ${productList}">
-                    <td><a th:href="@{/products/{productId}/update(productId=${product.productId})}" th:text="${product.name}"></a></td>
+                    <td><a th:href="@{/private/products/{productId}/update(productId=${product.productId})}" th:text="${product.name}"></a></td>
                     <td th:text="${product.price}">a</td>
                     <td th:text="${product.amount}">a</td>
                     <td class="d-flex gap-2">
-                        <form method="POST" th:action="@{/cart/{productId}(productId=${product.productId})}">
+                        <form method="POST" th:action="@{/public/cart/{productId}(productId=${product.productId})}">
                             <button class="btn btn-primary">
                                 <i class="fa-solid fa-cart-plus"></i>
                             </button>
                         </form>
                         <a
-                                th:href="@{/products/{productId}/delete(productId=${product.productId})}"
+                                th:href="@{/private/products/{productId}/delete(productId=${product.productId})}"
                                 th:text="#{products.delete}"
                                 class="btn btn-danger"
                         >
@@ -83,7 +83,7 @@
                             th:classappend="${!productList.hasPrevious() ? 'disabled' : ''}"
                     >
                         <a class="page-link"
-                           th:href="@{/products(page=${productList.number} - 1,sort=${sortVariable})}"
+                           th:href="@{/public/products(page=${productList.number} - 1,sort=${sortVariable})}"
                            th:text="#{products.previous}"
                         >
                             Previous
@@ -95,7 +95,7 @@
                             th:each="pageNumber: ${#numbers.sequence(0, productList.totalPages - 1)}"
                             th:classappend="${pageNumber == productList.number ? 'active' : ''}"
                     >
-                        <a class="page-link" th:href="@{/products(page=${pageNumber},sort=${sortVariable})}" th:text="${pageNumber + 1}"></a>
+                        <a class="page-link" th:href="@{/public/products(page=${pageNumber},sort=${sortVariable})}" th:text="${pageNumber + 1}"></a>
                     </li>
 
                     <li
@@ -103,7 +103,7 @@
                             th:classappend="${!productList.hasNext() ? 'disabled' : ''}"
                     >
                         <a class="page-link"
-                           th:href="@{/products(page=${productList.number} + 1,sort=${sortVariable})}"
+                           th:href="@{/public/products(page=${productList.number} + 1,sort=${sortVariable})}"
                            th:text="#{products.next}"
                         >
                             Next
