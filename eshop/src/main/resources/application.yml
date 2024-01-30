@@ -32,6 +32,7 @@ logging:
         eshop:
           config: DEBUG
           product: INFO
+          filter: TRACE
 server:
   error:
     whitelabel:
