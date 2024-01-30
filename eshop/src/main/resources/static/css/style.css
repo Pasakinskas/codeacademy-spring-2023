@@ -5,6 +5,10 @@ body {
     font-size: calc(6px + 2vmin);
 }
 
+body.login {
+    color: #212529;
+}
+
 .form-error {
     color: red;
 }
