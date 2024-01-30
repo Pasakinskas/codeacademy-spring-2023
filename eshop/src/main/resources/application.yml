@@ -23,7 +23,7 @@ spring:
         format_sql: true
   security:
     user:
-      name: admin
+      name: admin@eshop.lt
       password: admin
 logging:
   level:

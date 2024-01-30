@@ -18,7 +18,13 @@ public class SecurityConfig {
         .anyRequest()
         .authenticated())
       .formLogin(loginConfigure -> loginConfigure
-        .permitAll())
+        .permitAll()
+        .loginPage("/login")                //GET - the login form
+        .loginProcessingUrl("/login")       //Specifies the URL to validate the credentials.
+        .defaultSuccessUrl("/products", true)
+        .usernameParameter("loginEmail")    //The HTTP parameter to look for the username
+        .passwordParameter("loginPassword") //The HTTP parameter to look for the password
+      )
       .build();
   }
 }
