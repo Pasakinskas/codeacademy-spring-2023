@@ -6,14 +6,13 @@ import java.util.UUID;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import lt.codeacademy.eshop.HttpEndpoints;
 import lt.codeacademy.eshop.helper.MessageService;
 import lt.codeacademy.eshop.product.dto.ProductCategoryDto;
 import lt.codeacademy.eshop.product.dto.ProductDto;
 import lt.codeacademy.eshop.product.service.ProductCategoryService;
 import lt.codeacademy.eshop.product.service.ProductService;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -26,7 +25,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-@Log4j2
+@Slf4j
 @RequiredArgsConstructor
 public class ProductController {
 
@@ -34,17 +33,9 @@ public class ProductController {
   private final ProductCategoryService productCategoryService;
   private final MessageService messageService;
 
-  @Value("${company.name}")
-  private String companyName;
-  @Value("${developer.name}")
-  private String developerName;
-
   @GetMapping(HttpEndpoints.PRODUCTS_CREATE)
   public String getFormForCreate(Model model, String message) {
     Set<ProductCategoryDto> categories = productCategoryService.getCategories();
-
-    model.addAttribute("companyName", companyName);
-    model.addAttribute("developerName", developerName);
 
     model.addAttribute("categoriesDto", categories);
     model.addAttribute("productDto", ProductDto.builder().build());
@@ -55,7 +46,7 @@ public class ProductController {
 
   @GetMapping(HttpEndpoints.PRODUCTS_UPDATE)
   public String getFormForUpdate(Model model, @PathVariable UUID productId) {
-    log.atInfo().log("-==== get product on update ====-");
+    log.info("Got request for GET /products/{}/update", productId);
     model.addAttribute("productDto", productService.getProductByUUID(productId));
 
     return "product/product";
