@@ -9,8 +9,6 @@ import org.springframework.core.env.StandardEnvironment;
 public class EshopApplication {
 
 	public static void main(String[] args) {
-    SpringApplication app = new SpringApplication(EshopApplication.class);
-    app.setAdditionalProfiles("funny");
-    app.run(args);
+    SpringApplication.run(EshopApplication.class, args);
 	}
 }

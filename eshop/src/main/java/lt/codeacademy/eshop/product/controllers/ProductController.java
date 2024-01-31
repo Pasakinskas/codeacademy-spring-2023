@@ -12,6 +12,8 @@ import lt.codeacademy.eshop.product.dto.ProductCategoryDto;
 import lt.codeacademy.eshop.product.dto.ProductDto;
 import lt.codeacademy.eshop.product.service.ProductCategoryService;
 import lt.codeacademy.eshop.product.service.ProductService;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -26,15 +28,24 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @Log4j2
 @RequiredArgsConstructor
+@PropertySource("classpath:codeacademy.properties")
 public class ProductController {
 
   private final ProductService productService;
   private final ProductCategoryService productCategoryService;
   private final MessageService messageService;
 
+  @Value("${company.name}")
+  private String companyName;
+  @Value("${developer.name}")
+  private String developerName;
+
   @GetMapping(HttpEndpoints.PRODUCTS_CREATE)
   public String getFormForCreate(Model model, String message) {
     Set<ProductCategoryDto> categories = productCategoryService.getCategories();
+
+    model.addAttribute("companyName", companyName);
+    model.addAttribute("developerName", developerName);
 
     model.addAttribute("categoriesDto", categories);
     model.addAttribute("productDto", ProductDto.builder().build());
