@@ -42,3 +42,7 @@ server:
     session:
       # tracking mode will store/show session only in cookie
       tracking-modes: cookie
+company:
+  name: EShop Corp
+developer:
+  name: Everyone!
