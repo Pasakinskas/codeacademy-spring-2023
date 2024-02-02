@@ -1,6 +1,4 @@
 spring:
-  profiles:
-    active: unsecure
   main:
     banner-mode: console
   h2:
@@ -22,10 +20,6 @@ spring:
     properties:
       hibernate:
         format_sql: true
-  security:
-    user:
-      name: admin@eshop.lt
-      password: admin
 logging:
   level:
     lt:

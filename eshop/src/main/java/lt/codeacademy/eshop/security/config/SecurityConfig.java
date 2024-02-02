@@ -7,6 +7,10 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -44,5 +48,21 @@ public class SecurityConfig {
         PathRequest.toH2Console(),
         PathRequest.toStaticResources().atCommonLocations()
       );
+  }
+
+  @Bean
+  public UserDetailsService inMemoryUserDetailsService() {
+    final UserDetails adminUser = User.builder()
+      .username("admin@eshop.lt")
+      .password("{noop}admin")  // look PasswordEncoderFactories
+      .roles("ADMIN", "USER")
+      .build();
+    final UserDetails userUser = User.builder()
+      .username("user@eshop.lt")
+      .password("{noop}user")   // look PasswordEncoderFactories
+      .roles("USER")
+      .build();
+
+    return new InMemoryUserDetailsManager(adminUser, userUser);
   }
 }
