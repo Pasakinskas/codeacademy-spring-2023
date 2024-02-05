@@ -5,7 +5,7 @@
 <nav th:replace="~{fragments/layout :: nav('user')}">placeholder</nav>
     <main class="container">
         <h3 th:text="#{user.create.title}"></h3>
-        <form method="post" th:object="${userDto}">
+        <form method="post" th:object="${userDto}" th:action="@{/users/create}">
             <div class="mb-3 form-group">
                 <label th:text="#{user.create.name} + ':'">Name:</label>
                 <input class="form-control" type="text" placeholder="user name" th:field="*{name}">
