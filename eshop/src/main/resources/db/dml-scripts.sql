@@ -24,5 +24,5 @@ VALUES (1, 2),
        (2, 1);
 
 INSERT INTO users(name, surname, email, password, zip_code, phone_number)
-    VALUES ('Admin', 'Admin', 'admin@eshop.lt', '{bcrypt}$2a$10$FBByjrD2r.nVxQTd0Nc/cONDD3MtLXi8ozq9PIG7em/4mjgExnRpe', 'LT-0001', 'N/A'),
-           ('User', 'User', 'user@eshop.lt', '{bcrypt}$2a$10$FBByjrD2r.nVxQTd0Nc/cONDD3MtLXi8ozq9PIG7em/4mjgExnRpe', 'LT-0002', 'N/A');
+    VALUES ('Admin', 'Admin', 'admin@eshop.lt', '$2a$10$FBByjrD2r.nVxQTd0Nc/cONDD3MtLXi8ozq9PIG7em/4mjgExnRpe', 'LT-0001', 'N/A'),
+           ('User', 'User', 'user@eshop.lt', '$2a$10$FBByjrD2r.nVxQTd0Nc/cONDD3MtLXi8ozq9PIG7em/4mjgExnRpe', 'LT-0002', 'N/A');
