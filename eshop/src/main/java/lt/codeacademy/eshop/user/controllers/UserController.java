@@ -1,8 +1,10 @@
 package lt.codeacademy.eshop.user.controllers;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lt.codeacademy.eshop.user.dto.UserDto;
+import lt.codeacademy.eshop.user.service.UsersService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,7 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/users")
 @Slf4j
+@RequiredArgsConstructor
 public class UserController {
+
+  private final UsersService usersService;
 
   @GetMapping("/create")
   public String getUserForm(Model model) {
@@ -28,7 +33,7 @@ public class UserController {
     if (errors.hasErrors()) {
       return "user/user";
     }
-    log.info("Got a POST /users/create with {}", userDto);
+    usersService.register(userDto);
 
     return "redirect:/users/create";
   }
