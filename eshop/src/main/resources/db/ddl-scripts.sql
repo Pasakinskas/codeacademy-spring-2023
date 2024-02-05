@@ -37,7 +37,7 @@ CREATE TABLE users
     phone_number VARCHAR(12)  NOT NULL
 );
 
-CREATE TABLE authority
+/*CREATE TABLE authority
 (
     id          BIGINT primary key auto_increment,
     name        VARCHAR(100) NOT NULL,
@@ -48,4 +48,4 @@ CREATE TABLE users_authorities
 (
     user_id      BIGINT,
     authority_id BIGINT
-);
+);*/

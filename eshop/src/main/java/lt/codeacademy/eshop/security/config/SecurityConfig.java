@@ -9,6 +9,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -29,6 +32,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
   private final DataSource dataSource;
+  private final UserDetailsService userDetailsService;
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -62,33 +66,12 @@ public class SecurityConfig {
       );
   }
 
-//  @Bean
-  public UserDetailsService inMemoryUserDetailsService() {
-    final PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-
-    final UserDetails adminUser = User.builder()
-      .username("admin@eshop.lt")
-      .password(encoder.encode("admin"))
-      .roles("ADMIN", "USER")
-      .build();
-    final UserDetails userUser = User.builder()
-      .username("user@eshop.lt")
-      .password("{noop}user")   // look PasswordEncoderFactories
-      .roles("USER")
-      .build();
-    System.out.println(adminUser.getPassword());
-    System.out.println(userUser.getPassword());
-
-    return new InMemoryUserDetailsManager(adminUser, userUser);
-  }
-
   @Bean
-  public UserDetailsService jdbcUserDetailsService() {
-    final JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
-    users.setUsersByUsernameQuery("select email AS username, password, TRUE as enabled FROM users WHERE email = ?");
-    users.setAuthoritiesByUsernameQuery("select email AS username, 'ROLE_ADMIN' AS authority FROM users WHERE email = ?");
+  public AuthenticationProvider authenticationProvider() {
+    final DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+    authenticationProvider.setUserDetailsService(userDetailsService);
 
-    return users;
+    return authenticationProvider;
   }
 
 }
