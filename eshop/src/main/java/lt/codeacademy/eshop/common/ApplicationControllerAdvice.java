@@ -21,6 +21,11 @@ public class ApplicationControllerAdvice {
     return "product/error/productNotFound";
   }
 
+  @ExceptionHandler
+  public String otherErrors(Exception e) {
+    throw new RuntimeException(e);
+  }
+
   @InitBinder
   public void initBinder(WebDataBinder webDataBinder) {
     StringTrimmerEditor trimmerEditor = new StringTrimmerEditor(true);
