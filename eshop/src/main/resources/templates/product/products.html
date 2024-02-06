@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="en">
 <head th:replace="~{fragments/layout :: head(#{products.title})}"></head>
 <body>
     <nav th:replace="~{fragments/layout :: nav('products')}">placeholder</nav>
@@ -53,20 +55,25 @@
                     <td><a th:href="@{/products/{productId}/update(productId=${product.productId})}" th:text="${product.name}"></a></td>
                     <td th:text="${product.price}">a</td>
                     <td th:text="${product.amount}">a</td>
-                    <td class="d-flex gap-2">
-                        <form method="POST" th:action="@{/cart/{productId}(productId=${product.productId})}">
-                            <button class="btn btn-primary">
-                                <i class="fa-solid fa-cart-plus"></i>
-                            </button>
-                        </form>
-                        <a
-                                th:href="@{/products/{productId}/delete(productId=${product.productId})}"
-                                th:text="#{products.delete}"
-                                class="btn btn-danger"
-                        >
-                            Delete
-                        </a>
-                    </td>
+                    <div sec:authorize="hasRole('ADMIN')">
+                        <td class="d-flex gap-2">
+                            <form method="POST" th:action="@{/cart/{productId}(productId=${product.productId})}">
+                                <button class="btn btn-primary">
+                                    <i class="fa-solid fa-cart-plus"></i>
+                                </button>
+                            </form>
+                            <a
+                                    th:href="@{/products/{productId}/delete(productId=${product.productId})}"
+                                    th:text="#{products.delete}"
+                                    class="btn btn-danger"
+                            >
+                                Delete
+                            </a>
+                        </td>
+                    </div>
+                    <div sec:authorize="!hasRole('ADMIN')">
+                        <td></td>
+                    </div>
                 </tr>
                 </tbody>
             </table>
