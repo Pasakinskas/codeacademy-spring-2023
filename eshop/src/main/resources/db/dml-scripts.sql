@@ -26,3 +26,12 @@ VALUES (1, 2),
 INSERT INTO users(name, surname, email, password, zip_code, phone_number)
     VALUES ('Admin', 'Admin', 'admin@eshop.lt', '$2a$10$FBByjrD2r.nVxQTd0Nc/cONDD3MtLXi8ozq9PIG7em/4mjgExnRpe', 'LT-0001', 'N/A'),
            ('User', 'User', 'user@eshop.lt', '$2a$10$FBByjrD2r.nVxQTd0Nc/cONDD3MtLXi8ozq9PIG7em/4mjgExnRpe', 'LT-0002', 'N/A');
+
+INSERT INTO authority(name, description)
+    VALUES ('ADMIN', NULL),
+           ('USER', 'User with limited rights');
+
+INSERT INTO users_authorities(user_id, authorities_id)
+    VALUES (1, 1),
+           (1, 2),
+           (2, 2);

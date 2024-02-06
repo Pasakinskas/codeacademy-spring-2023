@@ -2,6 +2,7 @@ package lt.codeacademy.eshop.user.pojo;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -22,16 +23,31 @@ public class User implements UserDetails {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @Column(nullable = false)
   private String name;
+
+  @Column(nullable = false)
   private String surname;
+
+  @Column(nullable = false)
   private String email;
+
+  @Column(nullable = false)
   private String password;
+
+  @Column(nullable = false)
   private String zipCode;
+
+  @Column(nullable = false)
   private String phoneNumber;
+
+  @Column(nullable = false)
+  @ManyToMany(cascade = CascadeType.PERSIST)
+  private Set<Authority> authorities;
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
-    return List.of(new SimpleGrantedAuthority("ADMIN"));
+    return authorities;
   }
 
   @Override
