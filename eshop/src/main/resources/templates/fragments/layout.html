@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:fragment="head(title)">
     <meta charset="UTF-8">
@@ -52,6 +54,14 @@
                 </li>
             </ul>
         </div>
+    </div>
+
+    <div sec:authorize="!isAuthenticated()">
+        <a class="btn btn-light" th:href="@{/login}" th:text="'Login'">Login</a>
+    </div>
+    <div class="d-flex justify-content-end gap-4 me-4" style="width: 100%" sec:authorize="isAuthenticated()">
+        <span sec:authentication="principal.fullName"></span>
+        <a class="btn btn-light" th:href="@{/logout}" th:text="'Logout'">Logout</a>
     </div>
 </nav>
 
