@@ -56,7 +56,7 @@
         </div>
     </div>
 
-    <div sec:authorize="!isAuthenticated()">
+    <div class="d-flex justify-content-end gap-4 me-4" sec:authorize="!isAuthenticated()">
         <a class="btn btn-light" th:href="@{/login}" th:text="'Login'">Login</a>
     </div>
     <div class="d-flex justify-content-end gap-4 me-4" style="width: 100%" sec:authorize="isAuthenticated()">

@@ -28,6 +28,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -59,6 +60,12 @@ public class SecurityConfig {
         .defaultSuccessUrl("/products", true)
         .usernameParameter("loginEmail")    //The HTTP parameter to look for the username
         .passwordParameter("loginPassword") //The HTTP parameter to look for the password
+      )
+      .logout(logoutConfigure -> logoutConfigure
+        .logoutUrl("/logout")
+        .logoutSuccessUrl("/")
+        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+        .permitAll()
       )
       .build();
   }
