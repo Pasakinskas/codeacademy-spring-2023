@@ -42,7 +42,7 @@ public class User implements UserDetails {
   private String phoneNumber;
 
   @Column(nullable = false)
-  @ManyToMany(cascade = CascadeType.PERSIST)
+  @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
   private Set<Authority> authorities;
 
   @Override
