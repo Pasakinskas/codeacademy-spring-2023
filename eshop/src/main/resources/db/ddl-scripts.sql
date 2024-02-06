@@ -34,18 +34,24 @@ CREATE TABLE users
     email        VARCHAR(100) NOT NULL,
     password     VARCHAR(500) NOT NULL,
     zip_code     VARCHAR(10)  NOT NULL,
-    phone_number VARCHAR(12)  NOT NULL
+    phone_number VARCHAR(12)  NOT NULL,
+    CONSTRAINT users_email_key UNIQUE (email),
+    CONSTRAINT users_phone_number_key UNIQUE (phone_number)
 );
 
 CREATE TABLE authority
 (
     id          BIGINT primary key auto_increment,
     name        VARCHAR(100) NOT NULL,
-    description VARCHAR(2000)
+    description VARCHAR(2000),
+    CONSTRAINT authority_key UNIQUE (name)
 );
 
 CREATE TABLE users_authorities
 (
     user_id      BIGINT,
-    authorities_id BIGINT
+    authorities_id BIGINT,
+    CONSTRAINT users_authorities_key UNIQUE (user_id, authorities_id),
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (authorities_id) REFERENCES authority(id)
 );
