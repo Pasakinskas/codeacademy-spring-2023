@@ -14,6 +14,7 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
@@ -32,6 +33,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 @Profile("!unsecure")
 @RequiredArgsConstructor
+@EnableMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
 public class SecurityConfig {
 
   private final DataSource dataSource;
@@ -43,7 +45,7 @@ public class SecurityConfig {
       .authorizeHttpRequests(authorize -> authorize
         .requestMatchers(
           "/",
-          "/products",
+          "/products/**",  // changed from /products to /products/** for test security in controller level
           "/cart/**",
           "/users/**",
           "/error/**"
