@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
@@ -27,5 +28,11 @@ public class ProductsController {
   public ResponseEntity<ProductDto> createAProduct(@RequestBody @Valid ProductDto productDto) {
     var savedProduct = productService.save(productDto);
     return ResponseEntity.status(HttpStatusCode.valueOf(201)).body(savedProduct);
+  }
+
+  @DeleteMapping("/products/{id}")
+  public ResponseEntity<?> deleteProduct(@PathVariable UUID id) {
+    productService.deleteProductByUUID(id);
+    return ResponseEntity.status(204).build();
   }
 }
