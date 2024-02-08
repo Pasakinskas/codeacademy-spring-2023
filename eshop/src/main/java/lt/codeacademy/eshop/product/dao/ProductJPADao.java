@@ -1,5 +1,6 @@
 package lt.codeacademy.eshop.product.dao;
 
+import lt.codeacademy.eshop.product.exception.ProductNotFoundException;
 import lt.codeacademy.eshop.product.pojo.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -23,9 +24,14 @@ public class ProductJPADao implements ProductDao {
   }
 
   @Override
-  public void save(Product product) {
-    product.setProductId(UUID.randomUUID());
+  public Product save(Product product) {
+    UUID productId = UUID.randomUUID();
+    product.setProductId(productId);
+
     repository.save(product);
+
+    return repository.findByProductId(productId)
+      .orElseThrow(() -> new ProductNotFoundException(productId));
   }
 
   @Override

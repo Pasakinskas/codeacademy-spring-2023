@@ -20,9 +20,11 @@ public class FakeProductDao implements ProductDao {
   }
 
   @Override
-  public void save(Product product) {
+  public Product save(Product product) {
     product.setId(storage.size() + 1);
     storage.put(product.getProductId(), product);
+
+    return product;
   }
 
   @Override
