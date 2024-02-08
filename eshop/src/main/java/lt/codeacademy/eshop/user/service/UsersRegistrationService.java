@@ -40,7 +40,7 @@ public class UsersRegistrationService {
         .email(userDto.getEmail())
         .phoneNumber(userDto.getPhoneNumber())
         .zipCode(userDto.getZipCode())
-        .password(new BCryptPasswordEncoder().encode(userDto.getPassword()))
+        .password(passwordEncoder.encode(userDto.getPassword()))
         .authorities(authorities)
         .build()
     );
