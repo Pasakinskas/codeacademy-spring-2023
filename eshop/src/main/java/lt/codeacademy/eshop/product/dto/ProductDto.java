@@ -9,6 +9,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -24,6 +25,5 @@ public class ProductDto {
   @NotNull
   private int amount;
   @NotNull
-  @Size
-  private Long categoryId;
+  private List<Long> categoryIds;
 }
