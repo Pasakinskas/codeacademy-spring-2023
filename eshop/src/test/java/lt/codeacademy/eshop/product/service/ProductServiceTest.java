@@ -1,17 +1,19 @@
 package lt.codeacademy.eshop.product.service;
 
-import lt.codeacademy.eshop.product.dao.ProductCategoryRepository;
-import lt.codeacademy.eshop.product.dao.ProductDao;
-import lt.codeacademy.eshop.product.dto.ProductDto;
-import lt.codeacademy.eshop.product.mappers.ProductMapper;
-import lt.codeacademy.eshop.product.pojo.Product;
-import lt.codeacademy.eshop.product.pojo.ProductCategory;
+import lt.codeacademy.eshop.common.product.service.ProductService;
+import lt.codeacademy.eshop.jpa.repositories.ProductCategoryRepository;
+import lt.codeacademy.eshop.common.product.dao.ProductDao;
+import lt.codeacademy.eshop.common.product.dto.ProductDto;
+import lt.codeacademy.eshop.common.product.mappers.ProductMapper;
+import lt.codeacademy.eshop.jpa.entities.Product;
+import lt.codeacademy.eshop.jpa.entities.ProductCategory;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.UUID;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -39,7 +41,7 @@ public class ProductServiceTest {
     var productUUID = UUID.randomUUID();
     var categoryId = 123L;
 
-    var productDto = new ProductDto(productUUID, "strawberry", BigDecimal.valueOf(1.95), 1, categoryId);
+    var productDto = new ProductDto(productUUID, "strawberry", BigDecimal.valueOf(1.95), 1, List.of(categoryId));
     var product = new Product();
 
     when(productCategoryRepository.getReferenceById(any())).thenReturn(new ProductCategory());

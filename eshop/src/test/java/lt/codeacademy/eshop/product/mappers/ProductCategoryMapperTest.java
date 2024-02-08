@@ -1,6 +1,7 @@
 package lt.codeacademy.eshop.product.mappers;
 
-import lt.codeacademy.eshop.product.pojo.ProductCategory;
+import lt.codeacademy.eshop.common.product.mappers.ProductCategoryMapper;
+import lt.codeacademy.eshop.jpa.entities.ProductCategory;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

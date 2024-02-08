@@ -1,10 +1,10 @@
 package lt.codeacademy.eshop.product.dao;
 
-import lt.codeacademy.eshop.product.pojo.Product;
+import lt.codeacademy.eshop.common.product.dao.ProductJPADao;
+import lt.codeacademy.eshop.jpa.repositories.ProductRepository;
+import lt.codeacademy.eshop.jpa.entities.Product;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 

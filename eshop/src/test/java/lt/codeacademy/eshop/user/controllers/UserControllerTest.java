@@ -1,8 +1,9 @@
 package lt.codeacademy.eshop.user.controllers;
 
-import lt.codeacademy.eshop.user.dto.UserDto;
-import lt.codeacademy.eshop.user.service.UsersRegistrationService;
-import lt.codeacademy.eshop.user.service.UsersService;
+import lt.codeacademy.eshop.mvc.controllers.UserController;
+import lt.codeacademy.eshop.common.user.dto.UserDto;
+import lt.codeacademy.eshop.common.user.service.UsersRegistrationService;
+import lt.codeacademy.eshop.common.user.service.UsersService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
