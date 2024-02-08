@@ -26,11 +26,21 @@ public class ProductService {
   @Transactional
   public void saveProduct(ProductDto productDto) {
     final Product product = mapper.fromDto(productDto);
-    final ProductCategory productCategory = productCategoryRepository.getReferenceById(productDto.getCategoryId());
+    final ProductCategory productCategory = productCategoryRepository.getReferenceById(productDto.getCategoryIds().get(0));
 
     product.getProductCategories().add(productCategory);
 
     productDao.save(product);
+  }
+
+  @Transactional
+  public ProductDto save(ProductDto productDto) {
+    final Product product = mapper.fromDto(productDto);
+    final ProductCategory productCategory = productCategoryRepository.getReferenceById(productDto.getCategoryIds().get(0));
+
+    product.getProductCategories().add(productCategory);
+
+    return mapper.toDto(productDao.save(product));
   }
 
   public void updateProduct(ProductDto productDto) {
