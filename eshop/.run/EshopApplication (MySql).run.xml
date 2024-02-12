@@ -2,7 +2,7 @@
   <configuration default="false" name="EshopApplication (MySql)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
     <option name="ACTIVE_PROFILES" value="mysql" />
     <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-    <module name="main" />
+    <module name="spring-main" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="lt.codeacademy.eshop.EshopApplication" />
     <option name="VM_PARAMETERS" value="-Dspring.main.banner-mode=off" />
     <extension name="net.ashald.envfile">
