@@ -11,8 +11,13 @@
 	<groupId>lt.codeacademy</groupId>
 	<artifactId>eshop</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>eshop</name>
+    <packaging>pom</packaging>
+    <name>eshop</name>
 	<description>A demo project for codeacademy spring 2024</description>
+    <modules>
+        <module>security</module>
+        <module>main</module>
+    </modules>
 
     <properties>
 		<java.version>17</java.version>

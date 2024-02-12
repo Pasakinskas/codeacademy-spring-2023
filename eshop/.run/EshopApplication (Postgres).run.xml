@@ -2,7 +2,7 @@
   <configuration default="false" name="EshopApplication (Postgres)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
     <option name="ACTIVE_PROFILES" value="pg" />
     <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-    <module name="eshop" />
+    <module name="main" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="lt.codeacademy.eshop.EshopApplication" />
     <option name="VM_PARAMETERS" value="-Dspring.main.banner-mode=off" />
     <extension name="net.ashald.envfile">
