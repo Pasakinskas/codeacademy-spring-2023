@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: no-security
   main:
     banner-mode: console
   h2:

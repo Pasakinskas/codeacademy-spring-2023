@@ -7,17 +7,48 @@
         <groupId>lt.codeacademy.eshop</groupId>
         <artifactId>base-parent</artifactId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <groupId>lt.codeacademy.security</groupId>
-    <artifactId>security-pom</artifactId>
-    <name>Security aggregator (pom)</name>
-    <packaging>pom</packaging>
+    <groupId>lt.codeacademy.eshop.security</groupId>
+    <artifactId>security</artifactId>
+    <name>Security basic mvc auth module (basic-mvc)</name>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
-    <modules>
-        <module>disabled-security</module>
-        <module>basic-mvc</module>
-        <module>security-core</module>
-    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>lt.codeacademy.eshop</groupId>
+            <artifactId>core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
