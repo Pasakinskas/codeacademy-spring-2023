@@ -1,9 +1,9 @@
-package lt.codeacademy.core;
-
-import java.util.Objects;
+package lt.codeacademy.eshop.core;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
+
+import java.util.Objects;
 
 public class PhoneNumberValidator implements ConstraintValidator<PhoneNumber, String> {
 

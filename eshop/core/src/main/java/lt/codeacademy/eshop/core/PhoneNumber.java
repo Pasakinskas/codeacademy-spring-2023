@@ -1,4 +1,4 @@
-package lt.codeacademy.core;
+package lt.codeacademy.eshop.core;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;

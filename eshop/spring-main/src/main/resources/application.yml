@@ -1,6 +1,7 @@
 spring:
   profiles:
-    active: no-security
+    active: no-security  #   deactivate security
+#    active: secure-mvc-basic  #  activate security for mvc scope and controllers
   main:
     banner-mode: console
   h2:

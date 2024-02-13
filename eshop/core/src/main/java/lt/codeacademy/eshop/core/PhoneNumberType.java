@@ -1,4 +1,4 @@
-package lt.codeacademy.core;
+package lt.codeacademy.eshop.core;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
