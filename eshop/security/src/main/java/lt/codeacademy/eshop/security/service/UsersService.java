@@ -2,15 +2,14 @@ package lt.codeacademy.eshop.security.service;
 
 import lombok.RequiredArgsConstructor;
 import lt.codeacademy.eshop.security.domain.UserDomain;
+import lt.codeacademy.eshop.security.dto.UserPrincipalDto;
 import lt.codeacademy.eshop.security.jpa.repository.UserRepository;
 import lt.codeacademy.eshop.security.mapper.UserEntityDomainMapper;
-import lt.codeacademy.eshop.security.dto.UserPrincipalDto;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 @RequiredArgsConstructor
 public class UsersService implements UserDetailsService {
 

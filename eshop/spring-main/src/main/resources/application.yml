@@ -1,7 +1,13 @@
 spring:
   profiles:
-    active: no-security  #   deactivate security
+#    active: no-security  #   deactivate security
 #    active: secure-mvc-basic  #  activate security for mvc scope and controllers
+    active: secure-rest-basic  #  activate security for rest scope and controllers using basic authentication (username & password)
+  security:
+    user:
+      name: a
+      password: '{noop}a'
+
   main:
     banner-mode: console
   h2:
