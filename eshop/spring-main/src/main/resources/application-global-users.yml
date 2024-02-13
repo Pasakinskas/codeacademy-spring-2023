@@ -1,5 +1,8 @@
-spring:
-  security:
-    user:
-      name: a
-      password: '{noop}a'
+global:
+  users:
+    - username: user
+      password: '{noop}user'
+      roles: USER
+    - username: admin
+      password: '{noop}admin'
+      roles: ADMIN, USER
