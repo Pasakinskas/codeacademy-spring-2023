@@ -35,3 +35,7 @@ INSERT INTO users_authorities(user_id, authorities_id)
     VALUES (1, 1),
            (1, 2),
            (2, 2);
+
+INSERT INTO files(name, extension, `size`)
+    VALUES ('radish.jpg', '.jpg', 8080.0),
+           ('text-file.txt', '.txt', 500.0);

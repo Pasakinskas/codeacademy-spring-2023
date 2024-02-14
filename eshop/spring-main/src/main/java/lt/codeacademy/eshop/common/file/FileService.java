@@ -59,6 +59,10 @@ public class FileService {
     }
   }
 
+  public List<lt.codeacademy.eshop.jpa.entities.File> getAllFiles() {
+    return repository.findAll();
+  }
+
   private String generateFilename(MultipartFile file) {
     return fileLocation + "/" + file.getOriginalFilename();
   }

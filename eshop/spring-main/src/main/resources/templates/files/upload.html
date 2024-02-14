@@ -14,6 +14,34 @@
                 <button type="submit" class="btn btn-primary">Upload image</button>
             </form>
         </div>
+        <div class="row">
+            <table class="table table-dark table-hover">
+                <thead>
+                <tr>
+                    <th class="col-md-auto">
+                        <span>Name</span>
+                    </th>
+                    <th class="col-md-auto">
+                        <span>extension</span>
+                    </th>
+                    <th class="col-md-auto">
+                        <span>size</span>
+                    </th>
+                    <th class="col-md-auto">
+                        <span>timestamp</span>
+                    </th>
+                </thead>
+                <tbody>
+                    <tr th:each="file: ${files}">
+                        <td><a th:href="@{/files/download/{filename}(filename=${file.name})}" th:text="${file.name}"></a></td>
+                        <td th:text="${file.extension}">a</td>
+                        <td th:text="${file.size}">a</td>
+                        <td th:text="${file.timestamp}">a</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
     </div>
 </main>
 <footer th:replace="~{fragments/layout :: footer}">placeholder</footer>

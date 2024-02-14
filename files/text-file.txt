@@ -1,0 +1,4 @@
+I am writing text into this text file
+I hope it works out well
+I really don't want to get any errors
+I hate errors
