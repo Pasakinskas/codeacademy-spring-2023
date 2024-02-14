@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="~{fragments/layout :: head(#{file.upload.start})}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: nav('products/create')}">placeholder</nav>
+<main class="container">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <h2 th:text="#{file.upload.start}"></h2>
+            <form method="post" th:action="@{/upload}" enctype="multipart/form-data">
+                <div class="form-group">
+                    <input type="file" name="text-files" accept="text/*" class="form-control-file">
+                </div>
+                <button type="submit" class="btn btn-primary">Upload image</button>
+            </form>
+        </div>
+    </div>
+</main>
+<footer th:replace="~{fragments/layout :: footer}">placeholder</footer>
+</body>
+</html>

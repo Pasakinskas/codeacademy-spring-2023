@@ -64,4 +64,4 @@ build/
 ### VS Code ###
 .vscode/
 
-files
+./files/
