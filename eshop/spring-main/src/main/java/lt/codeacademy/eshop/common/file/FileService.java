@@ -1,6 +1,7 @@
 package lt.codeacademy.eshop.common.file;
 
-import lombok.SneakyThrows;
+import lt.codeacademy.eshop.jpa.repositories.FileRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,20 +13,28 @@ import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.List;
 
-/**
- * get file by name
- */
 @Service
 public class FileService {
 
+  private FileRepository repository;
   private final Path fileLocation = Paths.get("./files").toAbsolutePath().normalize();
+
+  @Autowired
+  public FileService(FileRepository repository) {
+    this.repository = repository;
+  }
 
   public void save(MultipartFile file) {
     try {
-      var newFile = new File(generateFilename(file));
+      var filename = generateFilename(file);
+      var newFile = new File(filename);
       file.transferTo(newFile);
+
+      saveFileDetailsToDatabase(file, filename);
+
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
@@ -52,5 +61,20 @@ public class FileService {
 
   private String generateFilename(MultipartFile file) {
     return fileLocation + "/" + file.getOriginalFilename();
+  }
+
+  private void saveFileDetailsToDatabase(MultipartFile file, String newFileName) {
+    var fileEntry = new lt.codeacademy.eshop.jpa.entities.File(
+      0L,
+      file.getOriginalFilename(),
+      getExtension(newFileName),
+      file.getSize(),
+      LocalDateTime.now()
+    );
+    repository.save(fileEntry);
+  }
+
+  private String getExtension(String filename) {
+    return filename.substring(filename.lastIndexOf("."));
   }
 }

@@ -55,3 +55,13 @@ CREATE TABLE users_authorities
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (authorities_id) REFERENCES authority(id)
 );
+
+DROP TABLE IF EXISTS files;
+CREATE TABLE files
+(
+    id           BIGINT primary key auto_increment,
+    name         VARCHAR(255)  NOT NULL,
+    extension    VARCHAR(25),
+    size         BIGINT,
+    timestamp    TIMESTAMP DEFAULT current_timestamp
+);
