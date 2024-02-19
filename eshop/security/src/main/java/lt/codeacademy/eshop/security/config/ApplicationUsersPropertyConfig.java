@@ -1,4 +1,4 @@
-package lt.codeacademy.eshop.security.config.basic;
+package lt.codeacademy.eshop.security.config;
 
 import lombok.Getter;
 import lt.codeacademy.eshop.security.domain.GlobalUser;
