@@ -6,6 +6,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lt.codeacademy.eshop.security.dto.LoginRequest;
+import lt.codeacademy.eshop.security.provider.JwtProvider;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -19,10 +20,14 @@ import java.io.IOException;
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
   private final ObjectMapper objectMapper;
+  private final JwtProvider jwtProvider;
 
-  public JwtAuthenticationFilter(AuthenticationManager authenticationManager, ObjectMapper objectMapper) {
+  public JwtAuthenticationFilter(AuthenticationManager authenticationManager,
+                                 ObjectMapper objectMapper,
+                                 JwtProvider jwtProvider) {
     super(authenticationManager);
     this.objectMapper = objectMapper;
+    this.jwtProvider = jwtProvider;
   }
 
   @Override
@@ -42,8 +47,11 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
   }
 
   @Override
-  protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult)
+  protected void successfulAuthentication(HttpServletRequest request,
+                                          HttpServletResponse response,
+                                          FilterChain chain,
+                                          Authentication authResult)
     throws IOException, ServletException {
-    response.addHeader(HttpHeaders.AUTHORIZATION, "cia mano tokenas");
+    response.addHeader(HttpHeaders.AUTHORIZATION, jwtProvider.getToken(authResult));
   }
 }

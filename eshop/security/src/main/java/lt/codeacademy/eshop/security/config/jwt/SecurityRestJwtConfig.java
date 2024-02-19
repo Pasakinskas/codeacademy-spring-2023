@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import lt.codeacademy.eshop.security.config.CommonConfig;
+import lt.codeacademy.eshop.security.provider.JwtProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -27,6 +28,7 @@ public class SecurityRestJwtConfig extends CommonConfig {
 
   private final ObjectMapper objectMapper;
   private final UserDetailsService userDetailsService;
+  private final JwtProvider jwtProvider;
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http,
@@ -44,7 +46,7 @@ public class SecurityRestJwtConfig extends CommonConfig {
 
       // set authorization request access for whole requests
       .authorizeHttpRequests(authConfigurer -> authConfigurer.anyRequest().authenticated())
-      .addFilter(new JwtAuthenticationFilter(authenticationManager, objectMapper))
+      .addFilter(new JwtAuthenticationFilter(authenticationManager, objectMapper, jwtProvider))
       .build();
   }
 
