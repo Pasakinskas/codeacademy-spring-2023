@@ -18,6 +18,7 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Slf4j
 @Profile("secure-rest-jwt")
@@ -47,6 +48,7 @@ public class SecurityRestJwtConfig extends CommonConfig {
       // set authorization request access for whole requests
       .authorizeHttpRequests(authConfigurer -> authConfigurer.anyRequest().authenticated())
       .addFilter(new JwtAuthenticationFilter(authenticationManager, objectMapper, jwtProvider))
+      .addFilterBefore(new JwtAuthorizationFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class)
       .build();
   }
 
