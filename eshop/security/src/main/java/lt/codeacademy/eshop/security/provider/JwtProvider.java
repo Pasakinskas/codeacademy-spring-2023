@@ -6,6 +6,7 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.Claim;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
+import jakarta.annotation.PostConstruct;
 import lt.codeacademy.eshop.security.dto.UserPrincipalDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,6 +15,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -30,14 +34,24 @@ public class JwtProvider {
   @Value("#{${spring.security.jwt.validity-time} * 60 * 1000}")
   private long tokenValidityInMillis;
 
-  @Value("${spring.security.jwt.secret-key}")
   private byte[] secretKey;
-
   public static Map<String, Object> headerMap;
 
   static {
     headerMap = new HashMap<>();
     headerMap.put("typ", "JWT");
+  }
+
+  @PostConstruct
+  protected void init() throws NoSuchAlgorithmException {
+    // Create a KeyGenerator instance for HMAC-SHA512
+    KeyGenerator keyGen = KeyGenerator.getInstance("HmacSHA512");
+
+    // Generate a random secret key
+    SecretKey generatedKey = keyGen.generateKey();
+
+    // Convert the secret key to a byte array
+    secretKey = generatedKey.getEncoded();
   }
 
   public String getToken(Authentication authentication) {

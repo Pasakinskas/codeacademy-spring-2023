@@ -8,7 +8,6 @@ spring:
   security:
     jwt:
       validity-time: 15
-      secret-key: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJlc2hvcC1hcGkiLCJhdWQiOiJlc2hvcC1hcGkiLCJleHAiOjE3MDg2MjEzMDEsImlhdCI6MTcwODYyMDQwMSwicm9sZXMiOlsiUk9MRV9BRE1JTiJdfQ.Nlhcv2FIcAYV7OG-Bm-yTaeEmQkRGEJG-CDsRdKYt4E3ri67n6i9Tjjnd3hf2sdJ5hLGJZdlywymru0b10xxzg
   main:
     banner-mode: console
   h2:
