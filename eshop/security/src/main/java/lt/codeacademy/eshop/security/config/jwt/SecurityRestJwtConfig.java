@@ -35,6 +35,12 @@ public class SecurityRestJwtConfig extends CommonConfig {
   public SecurityFilterChain securityFilterChain(HttpSecurity http,
                                                  AuthenticationManager authenticationManager) throws Exception {
     return http
+      .authorizeHttpRequests(authRequestConfigurer -> authRequestConfigurer.requestMatchers(
+        "/swagger-ui.html",
+        "/swagger-ui/**",
+        "/v3/api-docs/**"
+      ).permitAll())
+
       // Disable csrf as not important for rest endpoints
       .csrf(AbstractHttpConfigurer::disable)
 
