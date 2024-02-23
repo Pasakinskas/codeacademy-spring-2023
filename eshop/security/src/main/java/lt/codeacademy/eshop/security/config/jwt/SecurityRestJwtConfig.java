@@ -36,10 +36,12 @@ public class SecurityRestJwtConfig extends CommonConfig {
                                                  AuthenticationManager authenticationManager) throws Exception {
     return http
       .authorizeHttpRequests(authRequestConfigurer -> authRequestConfigurer.requestMatchers(
+        "/login",
         "/swagger-ui.html",
         "/swagger-ui/**",
         "/v3/api-docs/**"
-      ).permitAll())
+      ).permitAll()
+        .anyRequest().authenticated())
 
       // Disable csrf as not important for rest endpoints
       .csrf(AbstractHttpConfigurer::disable)
@@ -52,7 +54,6 @@ public class SecurityRestJwtConfig extends CommonConfig {
         sessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
       // set authorization request access for whole requests
-      .authorizeHttpRequests(authConfigurer -> authConfigurer.anyRequest().authenticated())
       .addFilter(new JwtAuthenticationFilter(authenticationManager, objectMapper, jwtProvider))
       .addFilterBefore(new JwtAuthorizationFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class)
       .build();

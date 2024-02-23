@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-public class ProductsController {
+public class ProductsController implements ProductControllerSpec {
 
   private final ProductService productService;
 
