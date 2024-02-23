@@ -54,10 +54,8 @@ public class JwtProvider {
     secretKey = generatedKey.getEncoded();
   }
 
-  public String getToken(Authentication authentication) {
-    final UserPrincipalDto principalDto = (UserPrincipalDto) authentication.getPrincipal();
-
-    final String token = JWT.create()
+  public String getToken(final UserPrincipalDto principalDto) {
+    return JWT.create()
       .withIssuer(ESHOP_API)
       .withAudience(ESHOP_API)
       .withExpiresAt(new Date(NOW.getTime() + tokenValidityInMillis))
@@ -68,8 +66,6 @@ public class JwtProvider {
         .map(GrantedAuthority::getAuthority)
         .collect(Collectors.toList()))
       .sign(createAlgorithmBySecretKey());
-
-    return token;
   }
 
   public Authentication parseToken(String token) {

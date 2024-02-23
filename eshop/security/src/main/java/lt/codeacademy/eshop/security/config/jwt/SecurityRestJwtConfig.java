@@ -54,7 +54,6 @@ public class SecurityRestJwtConfig extends CommonConfig {
         sessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
       // set authorization request access for whole requests
-      .addFilter(new JwtAuthenticationFilter(authenticationManager, objectMapper, jwtProvider))
       .addFilterBefore(new JwtAuthorizationFilter(jwtProvider), UsernamePasswordAuthenticationFilter.class)
       .build();
   }
