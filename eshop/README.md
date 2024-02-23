@@ -43,3 +43,7 @@ docker compose up -d pgadmin4
 
 ## Access the application
 http://localhost:8080
+
+## Access Swagger (using OpenAPI)
+The Swagger UI page will then be available at http://localhost:8080/swagger-ui.html 
+and the OpenAPI description will be available at the following url for json format: http://localhost:8080/v3/api-docs
