@@ -12,11 +12,15 @@ public class LoginResponse {
   private final Set<String> roles;
   private final String fullname;
   private final String token;
+  private final Long tokenExpiresAt;
 
-  public LoginResponse(UserPrincipalDto principalDto, String token) {
+  public LoginResponse(UserPrincipalDto principalDto,
+                       String token,
+                       Long tokenExpiresAt) {
     username = principalDto.getUsername();
     roles = principalDto.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toSet());
     fullname = principalDto.getFullName();
     this.token = token;
+    this.tokenExpiresAt = tokenExpiresAt;
   }
 }

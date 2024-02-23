@@ -28,7 +28,9 @@ public class LoginController {
   public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest, HttpServletResponse response) {
     return Optional.of(authenticate(loginRequest))
       .map(auth -> (UserPrincipalDto) auth.getPrincipal())
-      .map(principalDto -> ResponseEntity.ok(new LoginResponse(principalDto, jwtProvider.getToken(principalDto))))
+      .map(principalDto -> ResponseEntity.ok(
+        new LoginResponse(principalDto, jwtProvider.getToken(principalDto), jwtProvider.getTokenExpiresInSeconds()))
+      )
       .orElseThrow(() -> new BadCredentialsException("Authentication failed!"));
   }
 

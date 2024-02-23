@@ -100,4 +100,8 @@ public class JwtProvider {
   private Algorithm createAlgorithmBySecretKey() {
     return Algorithm.HMAC512(secretKey);
   }
+
+  public Long getTokenExpiresInSeconds() {
+    return tokenValidityInMillis / 1000;
+  }
 }
