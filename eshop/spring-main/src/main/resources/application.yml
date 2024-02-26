@@ -7,6 +7,8 @@ spring:
     include:
       - global-users
       - integration
+#      - rest-template
+      - reactive-exchange
   security:
     jwt:
       validity-time: 15

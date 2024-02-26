@@ -2,7 +2,7 @@ package lt.codeacademy.eshop.integration.apilayer.exchangeratesapi.controller;
 
 import lombok.RequiredArgsConstructor;
 import lt.codeacademy.eshop.integration.apilayer.exchangeratesapi.dto.ExchangeRatesDataDto;
-import lt.codeacademy.eshop.integration.apilayer.exchangeratesapi.service.resttemplate.util.ExchangeRatesService;
+import lt.codeacademy.eshop.integration.apilayer.exchangeratesapi.service.ExchangeRatesService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
