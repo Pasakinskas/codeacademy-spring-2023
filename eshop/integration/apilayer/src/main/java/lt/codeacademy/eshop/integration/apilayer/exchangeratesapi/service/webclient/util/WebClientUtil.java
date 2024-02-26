@@ -21,15 +21,19 @@ public final class WebClientUtil {
                               final HttpHeaders requestHttpHeaders) {
     log.atDebug().log("====> WebClient call GET: {}", baseUrl.concat(uriPath));
 
-    return WebClient.builder()
-      .baseUrl(baseUrl)
-      .defaultHeaders(httpHeaders -> httpHeaders.addAll(requestHttpHeaders))
-      .build()
+    return buildWebClientOf(baseUrl, requestHttpHeaders)
       .get()
       .uri(uriPath)
       .retrieve()
       .bodyToMono(responseDto)
       .log()
       .block();
+  }
+
+  public static WebClient buildWebClientOf(final String baseUrl, final HttpHeaders requestHttpHeaders) {
+    return WebClient.builder()
+      .baseUrl(baseUrl)
+      .defaultHeaders(httpHeaders -> httpHeaders.addAll(requestHttpHeaders))
+      .build();
   }
 }
