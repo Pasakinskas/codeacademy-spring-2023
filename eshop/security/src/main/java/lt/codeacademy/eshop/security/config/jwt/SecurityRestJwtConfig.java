@@ -36,11 +36,17 @@ public class SecurityRestJwtConfig extends CommonConfig {
                                                  AuthenticationManager authenticationManager) throws Exception {
     return http
       .authorizeHttpRequests(authRequestConfigurer -> authRequestConfigurer.requestMatchers(
-        "/login",
-        "/swagger-ui.html",
-        "/swagger-ui/**",
-        "/v3/api-docs/**"
-      ).permitAll()
+          "/login",
+          "/swagger-ui.html",
+          "/swagger-ui/**",
+          "/v3/api-docs/**"
+        )
+        .permitAll()
+        // integration uris
+        .requestMatchers(
+          "/currencies"
+        ).permitAll()
+        // any other request required authentication
         .anyRequest().authenticated())
 
       // Disable csrf as not important for rest endpoints

@@ -20,7 +20,8 @@
         <module>core</module>
         <module>security</module>
         <module>spring-main</module>
-    </modules>
+		<module>integration</module>
+	</modules>
 
     <properties>
         <java.version>17</java.version>

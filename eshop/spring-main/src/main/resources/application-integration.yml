@@ -1,0 +1,6 @@
+logging:
+  level:
+    lt:
+      codeacademy:
+        eshop:
+          integration: DEBUG
